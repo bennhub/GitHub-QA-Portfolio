@@ -57,6 +57,12 @@ For ease of use, I’ve integrated my automation project with Google Colab. You 
 
 [Run Tests on Google Colab](https://colab.research.google.com/drive/your-colab-notebook-id) <!-- Replace with your Colab link -->
 
+## Docker
+
+This section provides information about how Docker is utilized in this project.
+
+[View Automation Project](./Docker/README.md)
+
 ## Bonus Feature: Google Gemini AI
 
 Check out my latest project using Google Gemini AI to assist in creating test cases. This showcases how I integrate advanced AI tools into the QA process.
