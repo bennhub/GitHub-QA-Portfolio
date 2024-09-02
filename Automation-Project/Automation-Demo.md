@@ -57,3 +57,5 @@ This folder contains a series of automated tests designed to validate key functi
 
 This automation project demonstrates proficiency in using Playwright for both UI and API testing. The tests cover essential e-commerce functionalities, ensuring that the user experience is smooth and reliable. By following the Arrange, Act, Assert pattern, the tests are not only effective but also easy to understand and maintain.
 
+
+
