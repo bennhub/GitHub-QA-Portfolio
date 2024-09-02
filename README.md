@@ -11,7 +11,8 @@ Welcome to my GitHub repository, designed to demonstrate my skills and experienc
 4. [CI/CD Implementation](#cicd-implementation)
 5. [Automation Coding Project](#automation-coding-project)
 6. [Google Colab Integration](#google-colab-integration)
-7. [Bonus Feature: Google Gemini AI](#bonus-feature-google-gemini-ai)
+7. [Docker](#docker)
+8. [Bonus Feature: Google Gemini AI](#bonus-feature-google-gemini-ai)
 
 ## Resume
 
