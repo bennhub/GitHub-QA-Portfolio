@@ -62,7 +62,7 @@ For ease of use, I’ve integrated my automation project with Google Colab. You 
 
 This section provides information about how Docker is utilized in this project.
 
-[View Automation Project](./Docker/README.md)
+[View Docker Project](./Docker/README.md)
 
 ## Bonus Feature: Google Gemini AI
 
