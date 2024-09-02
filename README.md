@@ -17,7 +17,7 @@ Welcome to my GitHub repository, designed to demonstrate my skills and experienc
 
 You can find my resume in this repository, providing a detailed overview of my work history, skills, and experience.
 
-[View My Resume](./Resume.md)  <!-- Or link to a PDF: ./Resume.pdf -->
+[View My Resume](./resume.md)  <!-- Or link to a PDF: ./Resume.pdf -->
 
 ## Bug Reporting
 
