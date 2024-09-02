@@ -1,4 +1,4 @@
-# Bug Report
+# Bug Report Template
 
 ## Summary
 **Brief description of the bug:**
