@@ -14,15 +14,19 @@ jobs:
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v4  # Update to the latest version
+      uses: actions/checkout@v4 
 
     - name: Set up Node.js
-      uses: actions/setup-node@v4  # Update to the latest version
+      uses: actions/setup-node@v4  
       with:
-        node-version: '18'  # You can keep this as your required Node.js version
+        node-version: '18'  
 
     - name: Install dependencies
       run: npm install
+      working-directory: Automation-Project/Playwright
+
+    - name: Install Playwright browsers
+      run: npx playwright install
       working-directory: Automation-Project/Playwright
 
     - name: Run Playwright tests
