@@ -3,3 +3,4 @@ node_modules/
 
 # Ignore Playwright test results
 test-results/
+playwright-report/
