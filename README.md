@@ -36,7 +36,7 @@ This section showcases my use of GitHub for version control, including the creat
 - Branches and pull requests demonstrating a typical GitHub workflow.
 - Documentation on how I approach version control.
 
-[View Version Control Details](./Version-Control/Branch-Documentation.md)
+[View Version Control Details](./Version-Control/VC-Documentation.md)
 
 ## CI/CD Implementation
 
