@@ -1,0 +1,10 @@
+# Ignore node_modules directory
+node_modules/
+
+# Ignore Playwright test results
+test-results/
+playwright-report/
+
+#Images
+*.jpg
+*.png
