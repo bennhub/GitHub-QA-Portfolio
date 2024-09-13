@@ -7,11 +7,11 @@ Welcome to my GitHub repository, designed to demonstrate my skills and experienc
 
 1. [Resume](#resume)
 2. [Bug Reporting](#bug-reporting)
-3. [Version Control](#version-control)
+3. [AI-QA](#AI-QA)
 4. [CI/CD Implementation](#cicd-implementation)
 5. [Automation Coding Project](#automation-coding-project)
 6. [Docker](#docker)
-7. [AI-QA](#AI-QA)
+7. [Version Control](#version-control)
 
 ## Resume
 
