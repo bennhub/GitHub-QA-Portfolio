@@ -12,7 +12,7 @@ Welcome to my GitHub repository, designed to demonstrate my skills and experienc
 4. [CI/CD Implementation](#cicd-implementation)
 5. [Automation Coding Project](#automation-coding-project)
 6. [Docker](#docker)
-7. [Bonus Feature: AI-QA ](#bonus-feature-google-gemini-ai)
+7. [Bonus Feature: AI-QA](#bonus-feature-google-gemini-ai)
 
 ## Resume
 
