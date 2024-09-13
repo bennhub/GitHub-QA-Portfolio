@@ -12,7 +12,7 @@ Welcome to my GitHub repository, designed to demonstrate my skills and experienc
 4. [CI/CD Implementation](#cicd-implementation)
 5. [Automation Coding Project](#automation-coding-project)
 6. [Docker](#docker)
-7. [Bonus Feature: AI-QA](#bonus-feature-google-gemini-ai)
+7. [AI-QA](#AI-QA)
 
 ## Resume
 
@@ -58,7 +58,7 @@ This is a practical project where I utilize Docker to run Playwright scripts in 
 
 [View Docker Project](./Automation-Project/Automation-Demo.md) <!-- In progress..  -->
 
-## Bonus Feature: AI-QA 
+## AI-QA 
 **in progress..**
 Check out my latest project using Google Gemini AI to assist in creating test cases. This showcases how I integrate advanced AI tools into the QA process.
 
