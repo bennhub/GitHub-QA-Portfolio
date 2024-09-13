@@ -55,13 +55,15 @@ This is a practical project where I apply automation to solve real-world problem
 This is a practical project where I utilize Docker to run Playwright scripts in a containerized environment. Docker ensures that the scripts run consistently across different environments, which is especially useful for automated browser testing.
 
  - [Docker Project](https://github.com/bennhub/GitHub-QA-Portfolio/tree/main/Docker) 
- - [Docker Readme](./Docker/Playwright-Docker-Demo.md) 
+ - [Docker README](./Docker/Playwright-Docker-Demo.md) 
 
 ## AI-QA 
 **in progress..**
 Check out my latest project using Google Gemini AI to assist in creating test cases. This showcases how I integrate advanced AI tools into the QA process.
 
-[Explore AI-QA Project](./AI-QA/README.md)
+ - [AI-QA Project](https://github.com/bennhub/GitHub-QA-Portfolio/tree/main/Docker)
+ - [AI-QA Project README](./AI-QA Projects/README.md)
+
 
 ---
 
