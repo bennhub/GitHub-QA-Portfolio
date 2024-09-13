@@ -48,7 +48,8 @@ Here, I detail how I set up continuous integration and continuous deployment (CI
 
 This is a practical project where I apply automation to solve real-world problems. You can review the code, run the tests, and see the results.
 
- - [View Automation Project](./Automation-Project/Automation-Demo.md)
+ - [Automation Project](https://github.com/bennhub/GitHub-QA-Portfolio/tree/main/Automation-Project) 
+ - [Automation Project README](./Automation-Project/Automation-Demo.md)
 
 ## Docker
 
