@@ -1,0 +1,27 @@
+{
+    "testCases": [
+
+      {
+        "title": "Test Case 1: Forgotten Password",
+        "details": "Validate Forgotten Password with test steps and expected results"
+      },
+      {
+        "title": " Test Case 2: login with invalid creds",
+        "details": "Validate login attempt with invalid creds with test steps and expected results"
+      },
+
+      {
+        "title": "Test Case 3: Validate registration",
+        "details": "fill out registration form with first name, last name, address, email, password with test steps and expected results"
+      },
+      {
+        "title": "Test Case 4: Unhappy Path testing registration",
+        "details": "fill out registration form, negative test cases - think out of the box with test steps and expected results"
+      },
+      {
+        "title": "Test Case 5: Validating a logged in user",
+        "details": "Give me test steps for validating a logged in user with test steps and expected results"
+      }
+    ]
+  }
+  
