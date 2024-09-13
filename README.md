@@ -1,6 +1,5 @@
-# In Progress...
 
-# GitHub QA Portfolio
+# Ben's GitHub QA Portfolio
 
 Welcome to my GitHub repository, designed to demonstrate my skills and experience as a Quality Assurance (QA) Engineer. This repository contains a comprehensive collection of my work, showcasing my approach to QA, version control, CI/CD, automation, and more.
 
