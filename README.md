@@ -24,7 +24,7 @@ You can find my resume in this repository, providing a detailed overview of my w
 
 In this section, I demonstrate my approach to bug reporting using GitHub’s issue tracking feature. You will find a detailed bug report template as well as examples of filled-out reports.
 
-- [GitHub Issues Exmaple](https://github.com/bennhub/GitHub-QA-Portfolio/issues/1).
+- [GitHub Issues Example](https://github.com/bennhub/GitHub-QA-Portfolio/issues/1).
 - [Sample Bug Report](./Bug-Reporting/Sample-Bug-Report.md)
 - [Bug Report Template](./Bug-Reporting/Template.md)
   
