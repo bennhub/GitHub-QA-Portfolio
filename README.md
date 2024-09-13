@@ -51,11 +51,10 @@ This is a practical project where I apply automation to solve real-world problem
 [View Automation Project](./Automation-Project/Automation-Demo.md)
 
 ## Docker
-**in progress..**
 
 This is a practical project where I utilize Docker to run Playwright scripts in a containerized environment. Docker ensures that the scripts run consistently across different environments, which is especially useful for automated browser testing.
 
-[View Docker Project](./Automation-Project/Automation-Demo.md) <!-- In progress..  -->
+[View Docker Project](./Docker/Playwright-Docker-Demo.md) <!-- In progress..  -->
 
 ## AI-QA 
 **in progress..**
