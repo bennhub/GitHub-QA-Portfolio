@@ -11,8 +11,8 @@ Welcome to my GitHub repository, designed to demonstrate my skills and experienc
 3. [Version Control](#version-control)
 4. [CI/CD Implementation](#cicd-implementation)
 5. [Automation Coding Project](#automation-coding-project)
-6. [Google Colab Integration](#google-colab-integration)
-7. [Bonus Feature: Google Gemini AI](#bonus-feature-google-gemini-ai)
+6. [Docker](#docker)
+7. [Bonus Feature: AI-QA ](#bonus-feature-google-gemini-ai)
 
 ## Resume
 
@@ -20,7 +20,7 @@ You can find my resume in this repository, providing a detailed overview of my w
 
 [View My Resume](./resume.md)  <!-- Or link to a PDF: ./Resume.pdf -->
 
-## Bug Reporting
+## Bug Reporting 
 
 In this section, I demonstrate my approach to bug reporting using GitHub’s issue tracking feature. You will find a detailed bug report template as well as examples of filled-out reports.
 
@@ -51,17 +51,18 @@ This is a practical project where I apply automation to solve real-world problem
 
 [View Automation Project](./Automation-Project/Automation-Demo.md)
 
-## Google Colab Integration
+## Docker
+**in progress..**
 
-For ease of use, I’ve integrated my automation project with Google Colab. You can run the automation tests directly from your browser without needing to clone the repo.
+This is a practical project where I utilize Docker to run Playwright scripts in a containerized environment. Docker ensures that the scripts run consistently across different environments, which is especially useful for automated browser testing.
 
-[Run Tests on Google Colab](https://colab.research.google.com/drive/your-colab-notebook-id) <!-- Replace with your Colab link -->
+[View Docker Project](./Automation-Project/Automation-Demo.md) <!-- In progress..  -->
 
-## Bonus Feature: Google Gemini AI
-
+## Bonus Feature: AI-QA 
+**in progress..**
 Check out my latest project using Google Gemini AI to assist in creating test cases. This showcases how I integrate advanced AI tools into the QA process.
 
-[Explore Google Gemini AI Project](./Google-Gemini-AI/README.md)
+[Explore AI-QA Project](./AI-QA/README.md)
 
 ---
 
