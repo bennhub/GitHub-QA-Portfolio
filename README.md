@@ -61,7 +61,7 @@ This is a practical project where I utilize Docker to run Playwright scripts in 
 **in progress..**
 Check out my latest project using Google Gemini AI to assist in creating test cases. This showcases how I integrate advanced AI tools into the QA process.
 
- - [AI-QA Project](https://github.com/bennhub/GitHub-QA-Portfolio/tree/main/Docker)
+ - [AI-QA Project](https://github.com/bennhub/GitHub-QA-Portfolio/tree/main/AI-QA)
  - [AI-QA Project README](./AI-QA Projects/README.md)
 
 
