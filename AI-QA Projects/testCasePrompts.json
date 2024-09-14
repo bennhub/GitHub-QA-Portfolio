@@ -21,6 +21,10 @@
       {
         "title": "Test Case 5: Validating a logged in user",
         "details": "Give me test steps for validating a logged in user with test steps and expected results"
+      },
+      {
+        "title": "Test Case 6: Validating account lockout",
+        "details": "Give me test steps for validating account lockout"
       }
     ]
   }
