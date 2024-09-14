@@ -239,7 +239,7 @@ button,
 [type='submit'] {
   -webkit-appearance: button;
   /* 1 */
-  background-color: transparent;
+  background-color: white;
   /* 2 */
   background-image: none;
   /* 2 */
@@ -681,7 +681,7 @@ body {
 }
 
 .section {
-  background-color: #000; 
+  background-color: #333333; 
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
@@ -844,6 +844,75 @@ body {
 .copy-btn:focus {
   outline: none;
 }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        gap: 0px;
+    }
+
+    label {
+        font-size: 16px;
+        font-weight: bold;
+        color: #e2e2e2;
+        margin-bottom: 5px;
+    }
+
+    input[type="text"],
+    textarea {
+        width: 100%;
+        padding: 10px;
+        font-size: 14px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-sizing: border-box;
+        transition: border 0.3s ease;
+    }
+
+    input[type="text"]:focus,
+    textarea:focus {
+        border: 1px solid #007bff;
+        outline: none;
+    }
+
+    #save-testcase-btn {
+      padding: 12px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s ease, opacity 0.3s ease;
+  }
+  
+  #save-testcase-btn:hover {
+      background-color: #6c757d; /* Slight gray */
+      opacity: 0.8; /* Semi-transparent */
+  }
+  
+
+    @media (max-width: 768px) {
+        .section {
+            margin: 20px;
+            padding: 15px;
+        }
+
+    
+        label {
+            font-size: 14px;
+        }
+
+        input[type="text"],
+        textarea {
+            font-size: 13px;
+        }
+
+        button[type="submit"] {
+            font-size: 14px;
+        }
+    }
+
 
 
 

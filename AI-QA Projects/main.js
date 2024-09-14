@@ -6,6 +6,7 @@ const genAI = new GoogleGenerativeAI(`${import.meta.env.VITE_API_KEY}`);
 const model = genAI.getGenerativeModel({ model: "gemini-pro" });
 
 let history = [];
+let testCases = [];
 
 // Function to send prompt to the AI model and get response
 async function getResponse(userPrompt) {
@@ -123,7 +124,8 @@ async function loadTestCases() {
   try {
     const response = await fetch('/testCasePrompts.json'); // Adjust the path to your JSON file
     const data = await response.json();
-    return data.testCases;
+    testCases = data.testCases;
+    return testCases;
   } catch (error) {
     console.error("Error loading test cases:", error);
     return [];
@@ -131,11 +133,11 @@ async function loadTestCases() {
 }
 
 // Function to display test cases as clickable list items
-async function displayTestCases() {
-  const testCases = await loadTestCases();
+function displayTestCases() {
   const testCaseList = document.getElementById('test-case-list');
+  testCaseList.innerHTML = ''; // Clear the list before adding items
 
-  testCases.forEach((testCase, index) => {
+  testCases.forEach((testCase) => {
     const listItem = document.createElement('li');
     listItem.textContent = testCase.title;
     listItem.classList.add('test-case-item');
@@ -160,7 +162,47 @@ async function displayTestCases() {
 }
 
 // Load and display test cases when the page loads
-document.addEventListener("DOMContentLoaded", displayTestCases);
+document.addEventListener("DOMContentLoaded", async () => {
+  await loadTestCases();
+  displayTestCases();
+});
+
+// Function to handle new test case submission
+const testCaseForm = document.getElementById('test-case-form');
+const saveTestCaseBtn = document.getElementById('save-testcase-btn');
+
+saveTestCaseBtn.addEventListener('click', () => {
+  const titleInput = document.getElementById('testcase-title').value;
+  const detailsInput = document.getElementById('testcase-details').value;
+
+  if (titleInput.trim() === '' || detailsInput.trim() === '') {
+    alert('Please fill out both fields!');
+    return;
+  }
+
+  const newTestCase = {
+    title: titleInput,
+    details: detailsInput
+  };
+
+  // Temporarily add the new test case to the array
+  testCases.push(newTestCase);
+  
+  // Update the test case list in the UI
+  displayTestCases();
+
+  // Clear the form inputs
+  document.getElementById('test-case-form').reset();
+
+  // Mock function to save the new test case to a JSON file (you will need to implement this on the backend)
+  saveTestCaseToFile(newTestCase);
+});
+
+// Mock function to save test case to a JSON file
+async function saveTestCaseToFile(testCase) {
+  // Implement an actual API request or backend function to save the test case to the JSON file
+  console.log("Saving test case to file:", testCase);
+}
 
 // Function to add copy functionality to all copy buttons
 function addCopyFunctionality() {
