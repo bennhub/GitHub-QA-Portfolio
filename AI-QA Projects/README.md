@@ -53,7 +53,9 @@ The AI-buddy will be available at `http://localhost:3000` (default URL).
 
 ## Usage
 
-- Enter custom test case prompts in the json testcase file.
+- add your test case details and descriptions in the input fields
+- click on the test cases from the list to generate test case scenarios
+- you can also enter custom test case prompts in the json testcase file
 - If you want, give your AI a personality that you enjoy talking to (this is the fun part)
 - Click on the generate test case button for the bot to come up with some interesting test cases scenarios.
 
