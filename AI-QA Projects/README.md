@@ -7,7 +7,9 @@
 I created this tool utilizing Google Gemini AI Modal - to help with testing, providing an AI bot that you can reach out to for assistance whenever needed.
 
 
-![](https://raw.githubusercontent.com/bennhub/ai-qa-test-buddy/99939c11be3f53e02727fe7bc3223a7737f01402/ai_bot_testcase_3.gif)
+![](https://raw.githubusercontent.com/bennhub/GitHub-QA-Portfolio/6b584793888b9a8d4899fad0d0477a19e578c844/AI-QA%20Projects/ai_bot_testcase_3.gif
+)
+
 
 
 ## Features
