@@ -18,14 +18,24 @@
         <p>Explore methods for crafting critical thinking test cases using AI guidance.</p>
     </div>
 
+    <!-- Form to Create Test Case -->
+    <div class="section">
+        <h1>Create a New Test Case</h1>
+        <form id="test-case-form">
+            <label for="testcase-title">Test Case Title:</label><br>
+            <input type="text" id="testcase-title" name="testcase-title" placeholder="Enter test case title" required><br><br>
+
+            <label for="testcase-details">Test Case Details:</label><br>
+            <textarea id="testcase-details" name="testcase-details" rows="4" placeholder="Enter test case details" required></textarea><br><br>
+
+            <button type="button" id="save-testcase-btn">Add Test Case</button>
+        </form>
+    </div>
+
     <!-- List to generate test cases -->
     <div class="section">
-        <h1>Create Test Cases with AI</h1>
-        <p> - Based on custom prompts</p>
-        <p> - Customize prompts in the .json file</p>
-        
-        <br>
-        <h1>Click on test cases below to generate test steps and expected results</h1>
+        <h1>Generate Test Cases</h1>
+        <p>Click on test cases below to generate test steps and expected results</p>
         <div id="case-container">
             <ul id="test-case-list" class="test-case-list">
                 <!-- Test cases will be dynamically populated here -->
@@ -45,7 +55,7 @@
 
         <div class="p-2 bg-gemRegular flex gap-5 items-center">
             <img src="botTester.jpeg" alt="chatbot image" class="w-10 h-10 rounded-md" />
-            <h1 class="text-gemDeep text-lg font-medium">Test Botter Terminal</h1>
+            <h1 class="text-gemDeep text-lg font-medium">Test Botter Response</h1>
         </div>
 
         <!-- Chat Area -->
@@ -55,13 +65,7 @@
 
         <!-- Text Input Box -->
         <form action="" method="post" class="chat-form p-2" id="chat-form">
-           <!-- <textarea name="prompt" id="prompt" cols="30" rows="2"
-                class="w-full p-2 rounded-md resize-none focus:outline-none"
-                style="background: rgb(255, 255, 255); border: 1px solid grey; color: rgb(31,31,31);"
-                placeholder="Enter message here..."></textarea>
-            <button type="submit" class="w-full p-1 bg-gemDeep rounded text-white">
-                Send
-            </button>-->
+           <!-- Placeholder for chat functionality -->
         </form>
     </div>
     <script type="module" src="/main.js"></script>
