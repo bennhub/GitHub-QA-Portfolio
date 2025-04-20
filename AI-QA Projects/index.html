@@ -51,21 +51,24 @@
     <!-- Chatbot Pop-up -->
     <div id="chatbot-popup" class="chatbot-popup">
         <!-- Pop-up Close Button -->
-        <span class="close-button" id="close-chatbot">&times;</span>
+        <span class="close-button" id="close-chatbot">×</span>
 
-        <div class="p-2 bg-gemRegular flex gap-5 items-center">
-            <img src="botTester.jpeg" alt="chatbot image" class="w-10 h-10 rounded-md" />
+        <!-- Header -->
+        <div class="p-2 bg-gemRegular flex gap-5 items-center border-b border-gray-300"> 
+            <img src="botTester.jpeg" alt="chatbot image" class="w-10 h-10 rounded-md flex-shrink-0"/>
             <h1 class="text-gemDeep text-lg font-medium">Test Botter Response</h1>
         </div>
 
         <!-- Chat Area -->
-        <div id="chat-container" class="chat-container">
+
+        <div id="chat-container" class="chat-container flex-grow overflow-y-auto p-4"> 
             <!-- Chat messages will appear here -->
         </div>
 
-        <!-- Text Input Box -->
-        <form action="" method="post" class="chat-form p-2" id="chat-form">
-           <!-- Placeholder for chat functionality -->
+        <!-- Text Input Box - Explicitly define the input field -->
+        <form action="" method="post" class="chat-form p-2 border-t border-gray-300 flex" id="chat-form"> 
+           <input type="text" id="prompt" placeholder="Type your message..." class="flex-grow p-2 border border-gray-300 rounded-l-md focus:outline-none focus:ring-2 focus:ring-blue-500" autocomplete="off">
+           <button type="submit" class="bg-blue-500 text-white p-2 rounded-r-md hover:bg-blue-600 flex-shrink-0">Send</button>
         </form>
     </div>
     <script type="module" src="/main.js"></script>

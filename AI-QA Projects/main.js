@@ -1,25 +1,72 @@
-import { GoogleGenerativeAI } from "@google/generative-ai";
-import md from "markdown-it";
+import { GoogleGenerativeAI } from "https://esm.run/@google/generative-ai@latest";
+import MarkdownIt from "https://esm.run/markdown-it@13.0.1";
 
-// Initialize the model
-const genAI = new GoogleGenerativeAI(`${import.meta.env.VITE_API_KEY}`);
-const model = genAI.getGenerativeModel({ model: "gemini-pro" });
+// Initialize markdown parser
+const md = new MarkdownIt();
+
+// IMPORTANT: Replace this with your actual API key
+// When using in production, consider a more secure approach
+const API_KEY = "AIzaSyC5q7VBlVh9qa9F1Ns4Fi4MtkR0KGSCoVA";  // ← Replace with your actual API key
+
+// Initialize the model with the updated version
+const genAI = new GoogleGenerativeAI(API_KEY);
+// Update to Gemini 2.0 Flash
+const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
 
 let history = [];
 let testCases = [];
 
 // Function to send prompt to the AI model and get response
+// Find this function in main.js
 async function getResponse(userPrompt) {
-  const personality = "You have the personality of the top quality assurance engineer in the world. Respond only in this style, don't respond as the assistant.";
-  const fullPrompt = `${personality}\n\n${userPrompt}`;
+  // --- MORE AGGRESSIVE PROMPT ---
+  const personality = `You are a world-class QA engineer writing a formal test case document using Markdown. Respond *only* in this style. NO conversational filler.
 
-  const chat = await model.startChat({ history: history });
-  const result = await chat.sendMessage(fullPrompt);
-  const response = await result.response;
-  const text = response.text();
+**Formatting Rules (Strictly Enforce):**
+1.  **Section Titles:** Use **bold text** (e.g., \`**Test Suite:**\`, \`**Objective:**\`, \`**Test Steps:**\`). Each title MUST be on its own line.
+2.  **Test Steps:** Use a Markdown numbered list (\`1.\`, \`2.\`, \`3.\`).
+3.  **Action/Expected Result Separation (CRITICAL):** Within EACH numbered test step, \`**Action:**\` and \`**Expected Result:**\` MUST be on SEPARATE lines. Use a line break between them.
+  *   **WRONG:** \`1. **Action:** Do the thing. **Expected Result:** See the result.\`
+  *   **CORRECT:**
+      \`\`\`
+      1.  **Action:** Do the thing.
+          **Expected Result:** See the result.
+      \`\`\`
+4.  **Other Lists:** Use Markdown bullet points (\`*\` or \`-\`) for lists under sections like \`**Pre-Conditions:**\`.
+5.  **Spacing:** Ensure good vertical spacing between sections and list items for readability.
 
-  console.log("AI response:", text); // Log the response text for debugging
-  return text;
+**DO NOT** combine Action and Expected Result on the same line within a test step. Follow the CORRECT example above precisely. Provide only the test case document.`;
+
+  const fullPrompt = `${personality}\n\nGenerate the test case based on this request:\n${userPrompt}`;
+
+  try {
+      const chat = model.startChat({ history: history });
+      const result = await chat.sendMessage(fullPrompt);
+      const response = await result.response;
+      const text = response.text();
+
+      console.log("AI response (raw):", text); // Log raw response
+
+      // Update history (using correct format)
+      // Avoid pushing duplicate history entries if this gets called outside handleSubmit/handleTestCaseClick
+      // This logic might need refinement depending on exact flow.
+      // Let's assume history update happens where getResponse is called for now.
+      // history.push({ role: "user", parts: [{ text: userPrompt }] });
+      // history.push({ role: "model", parts: [{ text: text }] });
+      // console.log("Updated History:", history);
+
+
+      return text; // Return the raw Markdown text
+  } catch (error) {
+      console.error("Error communicating with AI:", error);
+      const chatArea = document.getElementById("chat-container");
+      if (chatArea) {
+           // Use aiDiv structure for consistency, passing simple HTML
+           chatArea.innerHTML += aiDiv(`<div class="ai-content p-2"><p class="text-red-600">Sorry, AI error: ${escapeHtml(error.message)}</p></div>`);
+           scrollToLastMessage(chatArea);
+      }
+      return null;
+  }
 }
 
 // User chat div
@@ -68,7 +115,7 @@ async function handleSubmit(event) {
   try {
     // Get AI response
     const aiResponse = await getResponse(userPrompt);
-    const md_text = md().render(aiResponse);
+    const md_text = md.render(aiResponse)
     
     // Display AI response in chat
     const aiContent = aiDiv(md_text);
@@ -144,7 +191,9 @@ function displayTestCases() {
     listItem.addEventListener('click', async () => {
       const aiResponse = await getResponse(`show me test cases: ${testCase.title}\n${testCase.details}`);
       const chatArea = document.getElementById("chat-container");
-      const md_text = md().render(aiResponse);
+      const md_text = md.render(aiResponse);
+
+
       const aiContent = aiDiv(md_text);
 
       // Display AI response in chat
