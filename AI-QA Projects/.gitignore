@@ -24,4 +24,4 @@ dist-ssr
 *.sw?
 
 # Api Key
-.env
+config.js

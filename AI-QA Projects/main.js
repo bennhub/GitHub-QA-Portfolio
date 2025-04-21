@@ -1,12 +1,21 @@
 import { GoogleGenerativeAI } from "https://esm.run/@google/generative-ai@latest";
 import MarkdownIt from "https://esm.run/markdown-it@13.0.1";
+import { API_KEY } from './config.js';
 
 // Initialize markdown parser
 const md = new MarkdownIt();
 
-// IMPORTANT: Replace this with your actual API key
-// When using in production, consider a more secure approach
-const API_KEY = "AIzaSyC5q7VBlVh9qa9F1Ns4Fi4MtkR0KGSCoVA";  // ← Replace with your actual API key
+// --- Initialize the model USING the imported key ---
+// Check if the imported API key is valid before initializing
+if (!API_KEY || API_KEY === "YOUR_ACTUAL_API_KEY_HERE") {
+  // Display an error or alert if the key is missing/default in config.js
+  alert("ERROR: API Key is missing or not set in config.js. Please create config.js and add your API key.");
+  // You might want to prevent further execution or disable functionality here
+  // For simplicity, we'll log an error, but the API call will likely fail.
+  console.error("API Key is missing or not set in config.js!");
+  // Optionally throw an error to stop script execution:
+  // throw new Error("API Key configuration error.");
+}
 
 // Initialize the model with the updated version
 const genAI = new GoogleGenerativeAI(API_KEY);
