@@ -1,16 +1,13 @@
-# AI Dojo
+# AI Dojo (Test Code Dojo)
 
-*In development.*
+A local-first QA training app powered by Qwen2.5-Coder running on Ollama. It provides
+structured exercises across automation coding, code review, test design, and AI skill
+training, with the local model acting as a coach — giving hints, explaining bugs, and
+reviewing drafts — rather than generating full solutions.
 
-A project demonstrating how I use AI as a QA engineer day-to-day — mirroring the
-graph-style multi-agent workflows I use at work — rather than showcasing a single
-built tool. Planned content:
+- **Live site:** [bennhub.github.io/ai-sandboxer](https://bennhub.github.io/ai-sandboxer/)
+  *(requires Ollama running locally — see the site for setup instructions)*
+- **Source:** [github.com/bennhub/ai-code-dabble](https://github.com/bennhub/ai-code-dabble)
 
-- A doc on setting up multi-agent workflows using graph-style orchestration
-  (LangGraph-style), with Mermaid flow charts illustrating the setup.
-- A doc on using AI to run UI checks, to help build out automation frameworks.
-- A write-up on the value of using MCP (Model Context Protocol) in an AI/QA workflow.
-
-This is the primary, lead content planned for the broader [AI-QA](../README.md)
-section — the specific tools in [Test-Case-Generator](../Test-Case-Generator/) are the
-secondary, supporting showcase.
+This is a separate, actively developed project — this page is just a pointer to it from
+the [AI-QA](../README.md) section.
