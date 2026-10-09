@@ -1,19 +1,21 @@
 {
-  "name": "playwright",
+  "name": "qa-portfolio-automation-suite",
   "version": "1.0.0",
   "main": "index.js",
   "directories": {
     "test": "tests"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "playwright test",
+    "test:headed": "playwright test --headed",
+    "report": "playwright show-report"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": "",
+  "description": "Playwright end-to-end + API test suite for the QA portfolio.",
   "dependencies": {
-    "@playwright/test": "^1.46.1",
-    "playwright": "^1.46.1"
+    "@playwright/test": "^1.64.0",
+    "playwright": "^1.64.0"
   }
 }

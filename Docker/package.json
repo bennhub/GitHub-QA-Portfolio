@@ -3,14 +3,14 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "playwright test"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": "",
+  "description": "Runs the QA portfolio's Playwright suite headlessly inside a container.",
   "dependencies": {
-    "@playwright/test": "^1.47.0",
-    "playwright": "^1.47.0"
+    "@playwright/test": "^1.64.0",
+    "playwright": "^1.64.0"
   }
 }

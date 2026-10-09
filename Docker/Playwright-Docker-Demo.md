@@ -1,6 +1,9 @@
-# Playwright Docker Example
+# Playwright Docker Demo
 
-This repository contains a Docker setup for running Playwright tests. Follow the instructions below to build the Docker image and run your Playwright script.
+This folder contains a Docker setup that runs the QA portfolio's Playwright test suite
+headlessly inside a container, using Microsoft's official Playwright image (which
+bundles matching browser binaries) so the suite runs identically regardless of the
+host machine.
 
 ## Prerequisites
 
@@ -10,24 +13,27 @@ This repository contains a Docker setup for running Playwright tests. Follow the
 
 ### 1. Build the Docker Image
 
-To build the Docker image for running Playwright, use the following command. This command reads the `Dockerfile` and creates an image named `playwright-example`.
-
 ```bash
-docker build -t playwright-example .
+docker build -t qa-portfolio-docker .
 ```
 
-## 2. Run the Docker Container
-To start a container from the playwright-example image and run the Playwright script, use the following command:
+### 2. Run the Docker Container
 
 ```bash
-docker run -it --rm -v "$(pwd)":/app playwright-example
+docker run --rm qa-portfolio-docker
 ```
 
-## Playwright Script
-The Docker container runs example.js, which is a Playwright script that performs the following actions:
+This runs `npx playwright test` inside the container against the same scenarios
+described in [Automation Demo](../Automation-Project/Automation-Demo.md) — account
+registration, cart/checkout, product search, UI scroll behavior, and API request
+validation — and prints a list-style report of pass/fail results to the console.
 
- - Launches a Chromium browser.
- - Navigates to a specified URL (https://www.b-n.me).
- - Takes a screenshot and saves it as example.png.
- - Closes the browser.
+## Optional: standalone screenshot script
 
+`example.js` is a small standalone script (not run by the container's default command)
+that launches Chromium, navigates to a URL, and saves a screenshot — useful as a quick
+sanity check that the Playwright/Chromium install works:
+
+```bash
+docker run --rm -v "$(pwd)":/app qa-portfolio-docker node example.js
+```
