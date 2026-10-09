@@ -3,7 +3,7 @@
 
 ![CI](https://github.com/bennhub/GitHub-QA-Portfolio/actions/workflows/ci.yml/badge.svg)
 
-Welcome to my GitHub repository, designed to demonstrate my skills and experience as a Quality Assurance (QA) Engineer. This repository contains a comprehensive collection of my work, showcasing my approach to QA, version control, CI/CD, automation, and more.
+I'm a QA Engineer who treats automation as a real engineering discipline and AI as a tool for the job, not a buzzword. This repo backs that up: a Playwright framework with a proper Page Object Model, fixtures, and CI that actually runs it, plus a graph-based multi-agent system showing how I actually use AI across requirements, automation, debugging, security, and code review.
 
 ## Table of Contents
 
