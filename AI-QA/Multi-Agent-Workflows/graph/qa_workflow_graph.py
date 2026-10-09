@@ -2,7 +2,8 @@
 QA Workflow Graph. A graph-based multi-agent system for QA engineering tasks.
 
 One Orchestrator agent reads an incoming task (a feature request, a Jira
-ticket, a bug report, a failing test, a PR to review) and decides which
+ticket, a bug report, a failing test, a PR to review, a security review) and
+decides which
 specialist agents need to weigh in and in what order, by keyword-matching
 over the task text (see plan_for_task in mock_llm.py - this is simple
 keyword matching, not reasoning). Each specialist is grounded in a real
@@ -81,7 +82,10 @@ pipelines.
 a real regression vs. a test that's simply wrong - using the CI report/trace \
 artifacts.
 - pr_review_agent (PR Review Specialist): reviews an automation test pull \
-request against this repo's automation standards before it merges.\
+request against this repo's automation standards before it merges.
+- security_agent (Security Specialist): reviews against OWASP Top 10 categories \
+(secrets management, injection/XSS, dependency hygiene) and recommends concrete \
+scanning tools (TruffleHog, Semgrep), not just a read-through.\
 """
 
 UI_FLOW_AGENT_ROLE = (
@@ -125,6 +129,15 @@ PR_REVIEW_AGENT_ROLE = (
     "answer in the provided PR review reference material."
 )
 
+SECURITY_AGENT_ROLE = (
+    "You are the Security Agent. You review code and configuration against "
+    "OWASP Top 10 categories (secrets management, injection/XSS, dependency "
+    "hygiene) and recommend concrete scanning tools (TruffleHog for secrets in "
+    "git history, Semgrep for static analysis) rather than relying on a manual "
+    "read-through alone. Ground every answer in the provided security "
+    "reference material."
+)
+
 SPECIALIST_CONFIG = {
     "requirements_agent": (REQUIREMENTS_AGENT_ROLE, "requirements_reference.md"),
     "ui_flow_agent": (UI_FLOW_AGENT_ROLE, "ui_flows_reference.md"),
@@ -135,6 +148,7 @@ SPECIALIST_CONFIG = {
     "dev_integration_agent": (DEV_INTEGRATION_AGENT_ROLE, "dev_repo_reference.md"),
     "debugging_agent": (DEBUGGING_AGENT_ROLE, "debugging_reference.md"),
     "pr_review_agent": (PR_REVIEW_AGENT_ROLE, "pr_review_reference.md"),
+    "security_agent": (SECURITY_AGENT_ROLE, "security_reference.md"),
 }
 
 

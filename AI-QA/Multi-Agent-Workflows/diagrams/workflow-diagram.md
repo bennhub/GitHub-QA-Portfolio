@@ -15,6 +15,7 @@ flowchart TD
     ORCH -->|route_next| DEV[Dev Integration Agent]
     ORCH -->|route_next| DEBUG[Debugging Agent]
     ORCH -->|route_next| PR[PR Review Agent]
+    ORCH -->|route_next| SEC[Security Agent]
     ORCH -->|plan exhausted| SYN[Synthesize]
 
     REQ -->|route_next| UI
@@ -22,27 +23,35 @@ flowchart TD
     REQ -->|route_next| DEV
     REQ -->|route_next| DEBUG
     REQ -->|route_next| PR
+    REQ -->|route_next| SEC
     REQ -->|plan exhausted| SYN
 
     UI -->|route_next| AUTO
     UI -->|route_next| DEV
     UI -->|route_next| DEBUG
     UI -->|route_next| PR
+    UI -->|route_next| SEC
     UI -->|plan exhausted| SYN
 
     AUTO -->|route_next| DEV
     AUTO -->|route_next| DEBUG
     AUTO -->|route_next| PR
+    AUTO -->|route_next| SEC
     AUTO -->|plan exhausted| SYN
 
     DEV -->|route_next| DEBUG
     DEV -->|route_next| PR
+    DEV -->|route_next| SEC
     DEV -->|plan exhausted| SYN
 
     DEBUG -->|route_next| PR
+    DEBUG -->|route_next| SEC
     DEBUG -->|plan exhausted| SYN
 
+    PR -->|route_next| SEC
     PR -->|plan exhausted| SYN
+
+    SEC -->|plan exhausted| SYN
 
     SYN --> END([END])
 ```

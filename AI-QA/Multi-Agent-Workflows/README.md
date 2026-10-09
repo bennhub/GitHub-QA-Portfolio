@@ -20,6 +20,7 @@ shape.
 | **Dev Integration Agent** | Dev repo's unit tests, API control-flow structure, codebase, and CI/CD pipelines | [context/dev_repo_reference.md](./context/dev_repo_reference.md) |
 | **Debugging Agent** | Triaging a failing test: flaky, a real regression, or a test that's simply wrong | [context/debugging_reference.md](./context/debugging_reference.md) |
 | **PR Review Agent** | Reviewing an automation test PR against this repo's standards before it merges | [context/pr_review_reference.md](./context/pr_review_reference.md) |
+| **Security Agent** | Reviewing against OWASP Top 10 categories and recommending concrete scanning tools | [context/security_reference.md](./context/security_reference.md) |
 
 The reference files aren't hypothetical. Most are grounded in the real
 [Automation-Project](../../Automation-Project/) suite and
@@ -35,7 +36,7 @@ duplicate to keep in sync.
 The Orchestrator's "decision" is keyword matching over the task text
 (`plan_for_task` in [graph/mock_llm.py](./graph/mock_llm.py)), not reasoning. See
 "What's Mocked" below. It's genuinely conditional, though: a task about the UI only
-pulls in the UI Flow Agent, not all six agents every time. If no keywords match
+pulls in the UI Flow Agent, not all seven agents every time. If no keywords match
 anything, it falls back to running the full pipeline rather than returning nothing.
 
 ## Sample Run
@@ -67,8 +68,9 @@ hardcoding them. Assert with expect(...).toBeVisible()/toHaveText() at each step
 no waitForTimeout. ...
 ```
 
-Note `dev_integration_agent`, `debugging_agent`, and `pr_review_agent` were correctly
-excluded. Nothing in that task text matched their keywords.
+Note `dev_integration_agent`, `debugging_agent`, `pr_review_agent`, and
+`security_agent` were correctly excluded. Nothing in that task text matched their
+keywords.
 
 ## Running It
 
@@ -121,8 +123,9 @@ workflows:
 
 ## Status
 
-Working: the orchestration graph, routing (including the two newest agents,
-Debugging and PR Review), and a test suite covering the routing/fallback logic.
+Working: the orchestration graph, routing (now seven agents: Requirements, UI Flow,
+Automation Engineer, Dev Integration, Debugging, PR Review, and Security), and a
+test suite covering the routing/fallback logic.
 
 Not yet built:
 - A doc on using AI to run UI checks, to help build out automation frameworks.
