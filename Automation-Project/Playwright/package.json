@@ -1,6 +1,7 @@
 {
   "name": "qa-portfolio-automation-suite",
   "version": "1.0.0",
+  "type": "module",
   "main": "index.js",
   "directories": {
     "test": "tests"
@@ -8,14 +9,21 @@
   "scripts": {
     "test": "playwright test",
     "test:headed": "playwright test --headed",
-    "report": "playwright show-report"
+    "report": "playwright show-report",
+    "lint": "eslint ."
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": "Playwright end-to-end + API test suite for the QA portfolio.",
+  "description": "Playwright end-to-end + API test suite for the QA portfolio, built as a Page Object Model framework with fixtures, test data factories, and env-driven config.",
   "dependencies": {
     "@playwright/test": "^1.64.0",
+    "dotenv": "^18.0.6",
     "playwright": "^1.64.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.12.0",
+    "eslint-plugin-playwright": "^2.12.1"
   }
 }

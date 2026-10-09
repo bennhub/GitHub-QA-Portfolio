@@ -4,3 +4,9 @@ node_modules/
 # Ignore Playwright test results
 test-results/
 playwright-report/
+
+# Local env overrides (see .env.example)
+.env
+
+# ESLint cache
+.eslintcache

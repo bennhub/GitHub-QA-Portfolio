@@ -1,47 +1,54 @@
-import { test, expect } from "@playwright/test";
-import { registerNewAccount } from "./helpers/registration.js";
+import { test, expect } from "../fixtures/pages.fixture.js";
+import { PRODUCTS } from "../test-data/products.js";
 
-test("Register account and add products to cart", async ({ page, context }) => {
-  //--------------------------------
-  // Act: Register a new account
-  //--------------------------------
-  await registerNewAccount(page, context);
-
+test("Register account and add products to cart", async ({
+  registeredUser,
+  accountStatusPage,
+  productsPage,
+  cartPage,
+  checkoutPage,
+}) => {
   //--------------------------------
   // Assert: Account was created
   //--------------------------------
-  await expect(page.locator(`[data-qa="account-created"]`)).toBeVisible();
-  await page.locator(`[data-qa="continue-button"]`).click();
+  await expect(accountStatusPage.accountCreatedDataQa).toBeVisible();
+  await accountStatusPage.continue();
 
   //--------------------------------
   // Act: Add products to cart
   //--------------------------------
-  await page.click('[data-product-id="1"].add-to-cart');
-  await page.locator(`:text("Continue Shopping")`).click();
-  await page.click('[data-product-id="2"].add-to-cart');
-  // Click 'Cart' button
-  await page.locator(`:text("View Cart")`).click();
+  await productsPage.addProductToCart(PRODUCTS.blueTop.id);
+  await productsPage.continueShopping();
+  await productsPage.addProductToCart(PRODUCTS.menTshirt.id);
+  await productsPage.viewCart();
 
   //--------------------------------
   // Assert: Products are in cart
   //--------------------------------
-  await expect(page.locator(`#product-1`)).toBeVisible();
-  await expect(page.locator(`#product-2`)).toBeVisible();
-  // Verify by Proceed to checkout button
-  await expect(page.locator(`:text("Proceed To Checkout")`)).toBeVisible();
+  await expect(cartPage.productRow(PRODUCTS.blueTop.id)).toBeVisible();
+  await expect(cartPage.productRow(PRODUCTS.menTshirt.id)).toBeVisible();
+  await expect(cartPage.proceedToCheckoutText).toBeVisible();
 
   //--------------------------------
   // Act: Proceed to checkout
   //--------------------------------
-  await page.locator('.btn:has-text("Proceed To Checkout")').click();
+  await cartPage.proceedToCheckout();
 
   //--------------------------------
   // Assert: Address details and order review
   //--------------------------------
-  await expect(page.locator('#address_delivery')).toContainText('Mr. Ben Tester');
-  await expect(page.locator('#address_invoice')).toContainText('Vancouver BC V6E1L8');
+  await expect(checkoutPage.deliveryAddress).toContainText(
+    `Mr. ${registeredUser.firstName} ${registeredUser.lastName}`,
+  );
+  await expect(checkoutPage.invoiceAddress).toContainText(
+    `${registeredUser.city} ${registeredUser.state} ${registeredUser.zipcode}`,
+  );
 
   // Verify cart contents
-  await expect(page.locator(`#product-1`)).toHaveText(`Blue Top\n\nWomen > Tops\n\n\t\n\nRs. 500\n\n\t1\t\n\nRs. 500`);
-  await expect(page.locator(`#product-2`)).toHaveText(`Men Tshirt\n\nMen > Tshirts\n\n\t\n\nRs. 400\n\n\t1\t\n\nRs. 400`);
+  await expect(cartPage.productRow(PRODUCTS.blueTop.id)).toHaveText(
+    `${PRODUCTS.blueTop.name}\n\n${PRODUCTS.blueTop.category}\n\n\t\n\n${PRODUCTS.blueTop.price}\n\n\t1\t\n\n${PRODUCTS.blueTop.price}`,
+  );
+  await expect(cartPage.productRow(PRODUCTS.menTshirt.id)).toHaveText(
+    `${PRODUCTS.menTshirt.name}\n\n${PRODUCTS.menTshirt.category}\n\n\t\n\n${PRODUCTS.menTshirt.price}\n\n\t1\t\n\n${PRODUCTS.menTshirt.price}`,
+  );
 });
