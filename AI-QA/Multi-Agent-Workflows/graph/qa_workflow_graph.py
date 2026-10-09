@@ -2,9 +2,11 @@
 QA Workflow Graph — a graph-based multi-agent system for QA engineering tasks.
 
 One Orchestrator agent reads an incoming task (a feature request, a Jira
-ticket, a bug report, an "automate this" ask) and decides which specialist
-agents need to weigh in and in what order. Each specialist is grounded in a
-real reference file (see ../context/), does its part, and the Orchestrator
+ticket, a bug report, a failing test, a PR to review) and decides which
+specialist agents need to weigh in and in what order, by keyword-matching
+over the task text (see plan_for_task in mock_llm.py - this is simple
+keyword matching, not reasoning). Each specialist is grounded in a real
+reference file (see ../context/), does its part, and the Orchestrator
 synthesizes all of it into one cohesive deliverable.
 
 This is a genuine LangGraph StateGraph — real nodes, real conditional
@@ -26,7 +28,12 @@ from typing import TypedDict
 from langgraph.graph import END, START, StateGraph
 
 sys.path.insert(0, str(Path(__file__).parent))
-from mock_llm import ALL_AGENTS, mock_llm_call  # noqa: E402
+from mock_llm import (  # noqa: E402
+    ALL_AGENTS,
+    ORCHESTRATOR_PLAN,
+    ORCHESTRATOR_SYNTHESIZE,
+    mock_llm_call,
+)
 
 CONTEXT_DIR = Path(__file__).parent.parent / "context"
 
@@ -58,7 +65,12 @@ the current automation repo's code structure and codebase, and enforces \
 strict test-implementation guidelines and best practices.
 - dev_integration_agent (Dev Integration Specialist): understands the dev \
 repo's unit tests, API control-flow structure, codebase, and CI/CD \
-pipelines.\
+pipelines.
+- debugging_agent (Debugging Specialist): triages a failing test - flaky vs. \
+a real regression vs. a test that's simply wrong - using the CI report/trace \
+artifacts.
+- pr_review_agent (PR Review Specialist): reviews an automation test pull \
+request against this repo's automation standards before it merges.\
 """
 
 UI_FLOW_AGENT_ROLE = (
@@ -88,6 +100,20 @@ DEV_INTEGRATION_AGENT_ROLE = (
     "material."
 )
 
+DEBUGGING_AGENT_ROLE = (
+    "You are the Debugging Agent. You're invoked when a test fails. You "
+    "triage whether it's flaky, a genuinely wrong test, or a real product "
+    "regression, using the CI report/trace artifacts. Ground every answer in "
+    "the provided debugging reference material."
+)
+
+PR_REVIEW_AGENT_ROLE = (
+    "You are the PR Review Agent. You review an automation test pull request "
+    "against this repo's automation standards before it merges, and end with "
+    "an explicit approve / approve with nits / request changes. Ground every "
+    "answer in the provided PR review reference material."
+)
+
 SPECIALIST_CONFIG = {
     "requirements_agent": (REQUIREMENTS_AGENT_ROLE, "requirements_reference.md"),
     "ui_flow_agent": (UI_FLOW_AGENT_ROLE, "ui_flows_reference.md"),
@@ -96,6 +122,8 @@ SPECIALIST_CONFIG = {
         "automation_standards.md",
     ),
     "dev_integration_agent": (DEV_INTEGRATION_AGENT_ROLE, "dev_repo_reference.md"),
+    "debugging_agent": (DEBUGGING_AGENT_ROLE, "debugging_reference.md"),
+    "pr_review_agent": (PR_REVIEW_AGENT_ROLE, "pr_review_reference.md"),
 }
 
 
@@ -125,7 +153,7 @@ def orchestrator_plan(state: QAWorkflowState) -> dict:
         "include agents actually needed, in the order their input should be "
         "gathered."
     )
-    raw = mock_llm_call(ORCHESTRATOR_ROLE, prompt)
+    raw = mock_llm_call(ORCHESTRATOR_PLAN, ORCHESTRATOR_ROLE, prompt)
     try:
         parsed = json.loads(raw)
         plan = parsed.get("plan") or list(ALL_AGENTS)
@@ -147,7 +175,7 @@ def build_specialist_node(agent_key: str, role_prompt: str, context_filename: st
             f"TASK:\n{state['task']}\n\n"
             f"PRIOR AGENT OUTPUTS:\n{json.dumps(state.get('agent_outputs', {}), indent=2)}\n"
         )
-        output = mock_llm_call(role_prompt, prompt)
+        output = mock_llm_call(agent_key, role_prompt, prompt)
         print(f"[{agent_key}] {output}\n")
         updated_outputs = dict(state.get("agent_outputs", {}))
         updated_outputs[agent_key] = output
@@ -166,7 +194,7 @@ def synthesize(state: QAWorkflowState) -> dict:
     prompt = (
         f"SYNTHESIZE\n\nTASK:\n{state['task']}\n\nAGENT OUTPUTS:\n{outputs_block}\n"
     )
-    final = mock_llm_call(ORCHESTRATOR_ROLE, prompt)
+    final = mock_llm_call(ORCHESTRATOR_SYNTHESIZE, ORCHESTRATOR_ROLE, prompt)
     print(f"[synthesize]\n{final}\n")
     return {"final_output": final}
 
