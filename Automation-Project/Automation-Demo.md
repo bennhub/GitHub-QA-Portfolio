@@ -10,7 +10,7 @@ and the [restful-booker](https://restful-booker.herokuapp.com) API sandbox.
 For the full architecture reference (directory structure, Page Object Model
 conventions, fixtures, test data, linting, env config, and a known external
 gotcha), see
-[Playwright/agent/automation-agent.md](./Playwright/agent/automation-agent.md) — it's
+[Playwright/agent/automation-agent.md](./Playwright/agent/automation-agent.md). It's
 written to be the canonical source of truth, kept in sync with the actual code
 rather than a separate description of it.
 
