@@ -1,10 +1,10 @@
 # Requirements Reference
 
-Example of how requirements reach this team — a design doc summary, a Jira-style
+Example of how requirements reach this team: a design doc summary, a Jira-style
 ticket, and an engineering breakdown. The Requirements Agent treats this format as the
 template for translating a feature ask into testable acceptance criteria.
 
-## Sample Ticket: JIRA-142 — Add promo code field at checkout
+## Sample Ticket: JIRA-142, Add promo code field at checkout
 
 **Design doc summary:** Checkout should accept an optional promo code. A valid code
 applies a discount to the order total before payment; an invalid code shows an inline
@@ -42,7 +42,7 @@ Scenario: Checkout without a promo code
 ## Conventions
 
 - Every ticket's acceptance criteria should be written so each scenario maps cleanly
-  to one automated test case — if a scenario can't be stated as a single Given/When/
+  to one automated test case. If a scenario can't be stated as a single Given/When/
   Then, it's probably two tickets.
 - Engineering breakdown notes call out new API surface and UI changes separately,
   since those typically become separate automation/dev-integration concerns.

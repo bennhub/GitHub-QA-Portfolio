@@ -1,5 +1,5 @@
 """
-QA Workflow Graph — a graph-based multi-agent system for QA engineering tasks.
+QA Workflow Graph. A graph-based multi-agent system for QA engineering tasks.
 
 One Orchestrator agent reads an incoming task (a feature request, a Jira
 ticket, a bug report, a failing test, a PR to review) and decides which
@@ -9,7 +9,7 @@ keyword matching, not reasoning). Each specialist is grounded in a real
 reference file (see ../context/), does its part, and the Orchestrator
 synthesizes all of it into one cohesive deliverable.
 
-This is a genuine LangGraph StateGraph — real nodes, real conditional
+This is a genuine LangGraph StateGraph: real nodes, real conditional
 routing, real state passing between agents. The one thing that's mocked is
 the LLM call itself (see mock_llm.py), so this runs instantly with no API
 key, no local model, and no network required. Swap mock_llm_call for a real

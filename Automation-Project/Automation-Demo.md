@@ -13,7 +13,7 @@ maintainability.
 The suite includes 6 tests:
 
 1. **Register account and delete it** (`register-account.spec.js`)
-   Registers a new account, verifies creation, then deletes the account as cleanup —
+   Registers a new account, verifies creation, then deletes the account as cleanup,
    keeping the test repeatable against a shared public demo site.
 2. **Register account and add products to cart** (`register-user-add-products.spec.js`)
    Registers a new account, adds two products to the cart, proceeds to checkout, and
@@ -64,12 +64,12 @@ spec files.
 
 ## Continuous Integration
 
-This suite runs automatically in GitHub Actions on every push/PR to `main` — see the
+This suite runs automatically in GitHub Actions on every push/PR to `main`. See the
 [CI/CD section](../CI-CD/CI-CD-Documentation.md) and the
 [workflow run history](https://github.com/bennhub/GitHub-QA-Portfolio/actions).
 
 ## Conclusion
 
-This project demonstrates Playwright for both UI and API testing — e-commerce
+This project demonstrates Playwright for both UI and API testing: e-commerce
 registration/checkout flows, product search, UI interaction, and API response
-validation — using the Arrange, Act, Assert pattern throughout.
+validation, using the Arrange, Act, Assert pattern throughout.

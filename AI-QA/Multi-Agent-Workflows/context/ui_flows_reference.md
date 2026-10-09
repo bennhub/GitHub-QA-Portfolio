@@ -2,7 +2,7 @@
 
 Documented UI flows for the application under test (automationexercise.com). These
 are the same flows automated in
-[Automation-Project/Playwright](../../../Automation-Project/Playwright/tests/) — the
+[Automation-Project/Playwright](../../../Automation-Project/Playwright/tests/). The
 UI Flow Agent treats this file as its source of truth for page structure and flow
 sequencing.
 
@@ -46,7 +46,7 @@ sequencing.
 
 ## Conventions
 
-- Prefer `[data-qa="..."]` / `[data-product-id="..."]` attribute selectors — they're
+- Prefer `[data-qa="..."]` / `[data-product-id="..."]` attribute selectors. They're
   stable across copy changes.
 - Text selectors (`text=...`, `:text("...")`) are used only where no stable attribute
   exists, and are treated as more brittle.

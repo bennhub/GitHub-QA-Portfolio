@@ -62,7 +62,7 @@ Accomplished QA professional with 10+ years of experience. Proven track record i
 
 ## Projects
 
-- **[AI-QA](./AI-QA/README.md)**: How I use AI as part of QA work — multi-agent workflow practices plus tools I've built, including a Gemini-powered test case generator.
+- **[AI-QA](./AI-QA/README.md)**: How I use AI as part of QA work: multi-agent workflow practices plus tools I've built, including a Gemini-powered test case generator.
 - **[Machine Learning Clustering and Recommendation System](https://github.com/bennhub/Machine-Learning-Projects)**
 
 ## Education

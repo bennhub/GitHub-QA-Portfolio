@@ -81,7 +81,7 @@ fix.
 > **Possible Solution:** Check the `SearchFilterManager` class for null pointer
 > dereferences; ensure all filter options are properly initialized before applying.
 >
-> **Severity:** Minor — low impact, cosmetic issue.
+> **Severity:** Minor, low impact, cosmetic issue.
 >
 > **Test Cases:**
 > 1. Perform a search with a single filter and verify results display correctly.
