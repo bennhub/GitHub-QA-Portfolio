@@ -1,9 +1,5 @@
-# Use the official Playwright image as base
-FROM mcr.microsoft.com/playwright:v1.47.0-jammy
-
-
-# Install ImageMagick
-RUN apt-get update && apt-get install -y imagemagick
+# Use the official Playwright image as base (bundles matching browser binaries)
+FROM mcr.microsoft.com/playwright:v1.64.0-noble
 
 # Create app directory
 RUN mkdir -p /app
@@ -15,8 +11,8 @@ COPY package*.json ./
 # Install app dependencies
 RUN npm install
 
-# Copy the rest of the app
+# Copy the rest of the app (test suite + config)
 COPY . .
 
-# Run the example script
-CMD ["node", "example.js"]
+# Run the Playwright test suite headlessly
+CMD ["npx", "playwright", "test", "--reporter=list"]
