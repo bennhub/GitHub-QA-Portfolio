@@ -12,7 +12,7 @@ Welcome to my GitHub repository, designed to demonstrate my skills and experienc
 3. [Automation Coding Project](#automation-coding-project)
 4. [CI/CD Implementation](#cicd-implementation)
 5. [Docker](#docker)
-6. [AI Dojo](#ai-dojo)
+6. [AI-QA](#ai-qa)
 
 ## Resume
 
@@ -47,9 +47,14 @@ This is a practical project where I utilize Docker to run the Playwright suite i
  - [Docker Project](https://github.com/bennhub/GitHub-QA-Portfolio/tree/main/Docker) 
  - [Docker README](./Docker/Playwright-Docker-Demo.md) 
 
-## AI Dojo
+## AI-QA
 
-A new project demonstrating a graph-style AI agent workflow for QA (mirroring how I use AI agents day-to-day) is in development. Link coming soon.
+This section covers how I use AI as part of QA work — both general workflow practices
+(multi-agent graph workflows, AI-assisted automation framework support, MCP) and
+specific tools I've built, including a Gemini-powered test case generator.
+
+ - [AI-QA Section](https://github.com/bennhub/GitHub-QA-Portfolio/tree/main/AI-QA) 
+ - [AI-QA README](./AI-QA/README.md)
 
 ---
 
