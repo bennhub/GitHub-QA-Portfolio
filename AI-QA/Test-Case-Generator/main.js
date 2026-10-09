@@ -187,7 +187,7 @@ closeChatbotButton.addEventListener('click', () => {
 document.addEventListener("DOMContentLoaded", openChatbot);
 
 // Reads any test cases the user has previously added, persisted in this
-// browser via localStorage (there is no backend — this is a client-only demo).
+// browser via localStorage (there is no backend; this is a client-only demo).
 function loadCustomTestCases() {
   try {
     const raw = localStorage.getItem(STORAGE_KEY);

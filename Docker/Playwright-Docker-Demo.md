@@ -24,14 +24,14 @@ docker run --rm qa-portfolio-docker
 ```
 
 This runs `npx playwright test` inside the container against the same scenarios
-described in [Automation Demo](../Automation-Project/Automation-Demo.md) — account
+described in [Automation Demo](../Automation-Project/Automation-Demo.md): account
 registration, cart/checkout, product search, UI scroll behavior, and API request
-validation — and prints a list-style report of pass/fail results to the console.
+validation. It prints a list-style report of pass/fail results to the console.
 
 ## Optional: standalone screenshot script
 
 `example.js` is a small standalone script (not run by the container's default command)
-that launches Chromium, navigates to a URL, and saves a screenshot — useful as a quick
+that launches Chromium, navigates to a URL, and saves a screenshot. Useful as a quick
 sanity check that the Playwright/Chromium install works:
 
 ```bash

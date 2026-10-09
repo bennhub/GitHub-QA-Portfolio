@@ -6,7 +6,7 @@ reviewing test code, distilled from the real conventions used in
 
 ## Structure
 
-- Test files live in `tests/`, named `<behavior>.spec.js` (kebab-case, no typos —
+- Test files live in `tests/`, named `<behavior>.spec.js` (kebab-case, no typos;
   this repo has already paid for that mistake once).
 - Shared setup used by more than one spec (e.g. account registration) belongs in
   `tests/helpers/`, not copy-pasted across files.
@@ -16,19 +16,19 @@ reviewing test code, distilled from the real conventions used in
 
 ## Assertions
 
-- Every meaningful step ends in a real `expect(...)` assertion — `toBeVisible()`,
+- Every meaningful step ends in a real `expect(...)` assertion: `toBeVisible()`,
   `toHaveText()`, `toContainText()`, or an explicit value check. No test should pass
   purely because nothing threw.
 - Never use `page.waitForTimeout()` to paper over timing issues. Rely on Playwright's
   built-in auto-waiting, or wait on a specific condition (`toBeVisible()`, a network
   response, etc.) instead.
 - A global test timeout should stay at Playwright's default (30s) unless there's a
-  documented reason for a longer one — a long global timeout usually means a flaky
+  documented reason for a longer one. A long global timeout usually means a flaky
   step is being hidden rather than fixed.
 
 ## Selectors
 
-- Prefer `[data-qa="..."]` / `[data-testid="..."]` / id-based selectors — see
+- Prefer `[data-qa="..."]` / `[data-testid="..."]` / id-based selectors. See
   `ui_flows_reference.md` for the ones already documented for this app.
 - Text selectors are a fallback, not a default, since they break on copy changes.
 
@@ -36,7 +36,7 @@ reviewing test code, distilled from the real conventions used in
 
 - The site under test's base URL lives in one place (`tests/helpers/config.js`), not
   hardcoded per file.
-- `npm test` must actually run the suite (`playwright test`) — never leave the
+- `npm test` must actually run the suite (`playwright test`). Never leave the
   default npm-init stub in place.
 
 ## CI

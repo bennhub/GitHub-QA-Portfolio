@@ -47,7 +47,7 @@ npm run dev
 ```
 
 5. **Open in Browser**
-Vite will print the local URL (default `http://localhost:5173`) — open it in your
+Vite will print the local URL (default `http://localhost:5173`). Open it in your
 browser.
 
 ## Usage

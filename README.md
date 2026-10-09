@@ -28,7 +28,7 @@ This section covers my approach to bug reporting, version control, and CI workfl
 
 ## Automation Coding Project
 
-This is a practical project where I apply automation to solve real-world problems — a Playwright test suite covering both UI and API testing. You can review the code, run the tests, and see the results.
+This is a practical project where I apply automation to solve real-world problems: a Playwright test suite covering both UI and API testing. You can review the code, run the tests, and see the results.
 
  - [Automation Project](https://github.com/bennhub/GitHub-QA-Portfolio/tree/main/Automation-Project) 
  - [Automation Project README](./Automation-Project/Automation-Demo.md)
@@ -49,7 +49,7 @@ This is a practical project where I utilize Docker to run the Playwright suite i
 
 ## AI-QA
 
-This section covers how I use AI as part of QA work — both general workflow practices
+This section covers how I use AI as part of QA work, both general workflow practices
 (multi-agent graph workflows, AI-assisted automation framework support, MCP) and
 specific tools I've built, including a Gemini-powered test case generator.
 

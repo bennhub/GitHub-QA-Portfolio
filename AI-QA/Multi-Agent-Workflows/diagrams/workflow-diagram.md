@@ -50,7 +50,7 @@ flowchart TD
 Every specialist node and the orchestrator share one state object
 (`QAWorkflowState` in `../graph/qa_workflow_graph.py`): `task`, `plan`,
 `current_step`, `agent_outputs`, `final_output`. `route_next` reads `plan` and
-`current_step` after every node to decide where to go next — so the actual path
+`current_step` after every node to decide where to go next. The actual path
 through the graph depends entirely on what the Orchestrator decided the task needs,
 not a fixed sequence. Every agent can transition to every other agent in principle;
 which edges actually get taken for a given run depends on the Orchestrator's plan.

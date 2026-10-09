@@ -7,17 +7,17 @@ already in this repo.
 
 1. **Did it fail on retry too?** `playwright.config.js` sets `trace: 'on-first-retry'`
    and CI retries failed tests (`retries: process.env.CI ? 2 : 0`). A test that fails
-   once but passes on retry is flaky, not broken — treat it as a stability problem in
+   once but passes on retry is flaky, not broken. Treat it as a stability problem in
    the test (selector timing, an unguarded animation, a race condition), not a product
    bug.
 2. **Pull the uploaded report, don't guess.** `.github/workflows/ci.yml` uploads the
    HTML report (`playwright-report/`) as a build artifact on every run via
    `actions/upload-artifact`, `if: always()`. Open the trace before changing any
-   assertion — a trace shows exactly what the page looked like at the moment of
+   assertion. A trace shows exactly what the page looked like at the moment of
    failure.
 3. **Check the selector against known-brittle patterns.** Per
    [ui_flows_reference.md](./ui_flows_reference.md), text selectors (`text=...`,
-   `:text("...")`) are the known-fragile category in this suite — a failure on one of
+   `:text("...")`) are the known-fragile category in this suite. A failure on one of
    those is more likely a copy change than a real regression than a failure on a
    `[data-qa="..."]` selector.
 4. **Separate "test is wrong" from "product is wrong."** If the assertion itself
@@ -27,6 +27,6 @@ already in this repo.
 
 ## Output
 
-A debugging pass should end with one of: **flaky — stabilize** (name the fix),
-**test is wrong — update it** (name the correct expected behavior), or **real
-regression — file a bug** (name what broke), never just "investigating."
+A debugging pass should end with one of: **flaky, stabilize it** (name the fix),
+**test is wrong, update it** (name the correct expected behavior), or **real
+regression, file a bug** (name what broke), never just "investigating."
