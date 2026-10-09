@@ -96,12 +96,21 @@ README and the code and understand the orchestration design in a couple of minut
 not to require them to install anything or hold an API key first. Requiring a live
 model would make this harder to review, not more impressive.
 
-If you want to actually run it against a real model instead of the mock: clone this
-folder and swap `mock_llm_call` for your own setup (Ollama, Anthropic, OpenAI,
-whatever you've got) — nothing else in the graph needs to change. `mock_llm.py`'s
-module docstring sketches exactly what that swap looks like, and the local-first
-approach already used in [AI-Dojo](../AI-Dojo/) is one easy option. That's intentionally
-left as a bring-your-own-AI exercise rather than something this repo maintains.
+## Using This With Your Own AI Workflows
+
+This is built to be adapted, not just read. To get it working with your own AI
+workflows:
+
+1. **Clone this folder** (`AI-QA/Multi-Agent-Workflows/`) into your own project.
+2. **Update the reference files** in `context/` to point at your workflows instead of
+   this portfolio's — your UI flows, your requirements/ticket format, your automation
+   standards, your dev/CI setup, your debugging approach, your PR checklist. The
+   agents are only as useful as what they're grounded in.
+3. **Run the multi-agent flow in your model of choice** — Codex, Claude Desktop, a
+   local Ollama model, the Anthropic/OpenAI API, whatever you've got. Swap
+   `mock_llm_call` in `graph/mock_llm.py` for a real call to that model (the module
+   docstring shows the shape of the change); nothing else in the graph needs to
+   change.
 
 ## Status
 
