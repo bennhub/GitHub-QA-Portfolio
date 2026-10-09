@@ -35,6 +35,7 @@ ALL_AGENTS = [
     "dev_integration_agent",
     "debugging_agent",
     "pr_review_agent",
+    "security_agent",
 ]
 
 ORCHESTRATOR_PLAN = "orchestrator_plan"
@@ -92,6 +93,15 @@ _ROUTING_KEYWORDS = {
         "review this test",
         "merge",
     ),
+    "security_agent": (
+        "security",
+        "owasp",
+        "xss",
+        "injection",
+        "vulnerability",
+        "secret",
+        "credential",
+    ),
 }
 
 # This is keyword matching, not reasoning - see the module docstring. It's
@@ -146,6 +156,16 @@ _SPECIALIST_RESPONSES = {
         "that npm test actually runs the new spec. Request changes on any checklist "
         "item that fails; otherwise approve."
     ),
+    "security_agent": (
+        "Per security_reference.md: no credential gets hardcoded (see the "
+        "Test-Case-Generator's previously-exposed, since-rotated Gemini key as the "
+        "cautionary example; config.js/.env patterns are the correct fix). If this "
+        "writes AI-generated or user-supplied content into innerHTML, confirm the "
+        "markdown renderer's html option stays disabled or add real sanitization. "
+        "Run TruffleHog against git history for secrets and Semgrep's "
+        "p/owasp-top-ten rules against the JS code rather than relying on manual "
+        "review alone; check any new dependency against npm audit before merging."
+    ),
 }
 
 _AGENT_LABELS = {
@@ -155,6 +175,7 @@ _AGENT_LABELS = {
     "dev_integration_agent": "Dev Integration Agent",
     "debugging_agent": "Debugging Agent",
     "pr_review_agent": "PR Review Agent",
+    "security_agent": "Security Agent",
 }
 
 

@@ -44,6 +44,12 @@ def test_pr_task_includes_pr_review_agent():
     assert "pr_review_agent" in plan
 
 
+def test_security_task_includes_security_agent():
+    plan = mock_llm.plan_for_task("Check this feature for OWASP vulnerabilities")
+    assert "security_agent" in plan
+    assert "pr_review_agent" not in plan
+
+
 def test_multi_keyword_task_includes_all_matching_agents():
     task = (
         "Write a Jira ticket, automate the checkout UI flow as a Playwright "
