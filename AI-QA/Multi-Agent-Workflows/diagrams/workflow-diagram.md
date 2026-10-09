@@ -7,59 +7,28 @@ exhausted.
 
 ```mermaid
 flowchart TD
-    START([START]) --> ORCH[Orchestrator<br/>plans which agents are needed]
+    START([START]) --> ORCH[Orchestrator]
+    ORCH --> POOL
 
-    ORCH -->|route_next| REQ[Requirements Agent]
-    ORCH -->|route_next| UI[UI Flow Agent]
-    ORCH -->|route_next| AUTO[Automation Engineer Agent]
-    ORCH -->|route_next| DEV[Dev Integration Agent]
-    ORCH -->|route_next| DEBUG[Debugging Agent]
-    ORCH -->|route_next| PR[PR Review Agent]
-    ORCH -->|route_next| SEC[Security Agent]
-    ORCH -->|plan exhausted| SYN[Synthesize]
+    subgraph POOL [Specialist Agents]
+        REQ[Requirements]
+        UI[UI Flow]
+        AUTO[Automation Engineer]
+        DEV[Dev Integration]
+        DEBUG[Debugging]
+        PR[PR Review]
+        SEC[Security]
+    end
 
-    REQ -->|route_next| UI
-    REQ -->|route_next| AUTO
-    REQ -->|route_next| DEV
-    REQ -->|route_next| DEBUG
-    REQ -->|route_next| PR
-    REQ -->|route_next| SEC
-    REQ -->|plan exhausted| SYN
-
-    UI -->|route_next| AUTO
-    UI -->|route_next| DEV
-    UI -->|route_next| DEBUG
-    UI -->|route_next| PR
-    UI -->|route_next| SEC
-    UI -->|plan exhausted| SYN
-
-    AUTO -->|route_next| DEV
-    AUTO -->|route_next| DEBUG
-    AUTO -->|route_next| PR
-    AUTO -->|route_next| SEC
-    AUTO -->|plan exhausted| SYN
-
-    DEV -->|route_next| DEBUG
-    DEV -->|route_next| PR
-    DEV -->|route_next| SEC
-    DEV -->|plan exhausted| SYN
-
-    DEBUG -->|route_next| PR
-    DEBUG -->|route_next| SEC
-    DEBUG -->|plan exhausted| SYN
-
-    PR -->|route_next| SEC
-    PR -->|plan exhausted| SYN
-
-    SEC -->|plan exhausted| SYN
-
+    POOL -->|next agent in plan| POOL
+    POOL -->|plan exhausted| SYN[Synthesize]
     SYN --> END([END])
 ```
 
-Every specialist node and the orchestrator share one state object
-(`QAWorkflowState` in `../graph/qa_workflow_graph.py`): `task`, `plan`,
-`current_step`, `agent_outputs`, `final_output`. `route_next` reads `plan` and
-`current_step` after every node to decide where to go next. The actual path
-through the graph depends entirely on what the Orchestrator decided the task needs,
-not a fixed sequence. Every agent can transition to every other agent in principle;
-which edges actually get taken for a given run depends on the Orchestrator's plan.
+This is a simplified view of the actual mechanics, not a literal diagram of every
+edge in the code. In `../graph/qa_workflow_graph.py`, each of the 7 agents (plus the
+Orchestrator) has its own conditional edge computed by `route_next`, which reads
+`plan`/`current_step` from the shared `QAWorkflowState` and returns whichever agent
+is next. In practice that means any agent can transition to any other agent, in
+whatever order the Orchestrator decided, looping until the plan is exhausted, which
+is what the single "Specialist Agents" box and its self-loop above represent.
