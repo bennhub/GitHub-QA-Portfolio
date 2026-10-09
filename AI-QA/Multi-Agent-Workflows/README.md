@@ -83,18 +83,25 @@ correctly excluded), the JSON-parse fallback, and `route_next`'s plan-exhaustion
 branch — the actual original logic in this repo, as opposed to the mocked LLM
 boundary.
 
-## What's Mocked
+## What's Mocked (By Design, Not a Placeholder)
 
 The graph itself — state, nodes, conditional routing — is a real LangGraph
 `StateGraph`. The one thing that's mocked is the LLM call (see
 [graph/mock_llm.py](./graph/mock_llm.py)): `plan_for_task` is keyword matching, and
-each specialist's response is a canned string, not a model generation. This runs
-instantly with no API key, no local model, and no network required, while still
-demonstrating genuine orchestration mechanics (conditional routing, shared state,
-fallback behavior). Swapping `mock_llm_call` for a real model call (e.g. the
-local-first approach already used in [AI-Dojo](../AI-Dojo/)) wouldn't require
-changing anything else in the graph — `mock_llm.py`'s module docstring sketches
-exactly what that swap looks like.
+each specialist's response is a canned string, not a model generation.
+
+This is the intended end state for this demo, not something waiting to be wired up to
+a real model. The point of publishing this is for someone to be able to read the
+README and the code and understand the orchestration design in a couple of minutes —
+not to require them to install anything or hold an API key first. Requiring a live
+model would make this harder to review, not more impressive.
+
+If you want to actually run it against a real model instead of the mock: clone this
+folder and swap `mock_llm_call` for your own setup (Ollama, Anthropic, OpenAI,
+whatever you've got) — nothing else in the graph needs to change. `mock_llm.py`'s
+module docstring sketches exactly what that swap looks like, and the local-first
+approach already used in [AI-Dojo](../AI-Dojo/) is one easy option. That's intentionally
+left as a bring-your-own-AI exercise rather than something this repo maintains.
 
 ## Status
 
@@ -104,4 +111,3 @@ Debugging and PR Review), and a test suite covering the routing/fallback logic.
 Not yet built:
 - A doc on using AI to run UI checks, to help build out automation frameworks.
 - A write-up on the value of MCP (Model Context Protocol) in this kind of workflow.
-- Actually wiring in a real model as an opt-in alternative to the mock.
