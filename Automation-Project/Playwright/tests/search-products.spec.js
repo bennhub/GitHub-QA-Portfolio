@@ -3,12 +3,11 @@
 //--------------------------------
 
 import { test, expect } from "@playwright/test";
+import { UI_BASE_URL } from "./helpers/config.js";
+
 test("Search Products", async ({ page, context }) => {
-  {
-    args: ["--ignore-certificate-errors", "--disable-web-security"];
-  }
   await context.setDefaultNavigationTimeout(60000); // optional: set a longer navigation timeout
-  await page.goto("https://automationexercise.com", {
+  await page.goto(UI_BASE_URL, {
     waitUntil: "domcontentloaded", // ensure the DOM is fully loaded
   });
 
@@ -44,13 +43,11 @@ test("Search Products", async ({ page, context }) => {
     ".col-sm-4 .productinfo p",
     (elements) => elements.map((element) => element.innerText)
   );
-  console.log(productNames);
 
-  //Check if there are some of product name have the search world(Dress)
+  // Check if some of product name have the search word (Dress)
   const containsDress = productNames.some((name) => name.includes("Dress"));
-  console.log(containsDress);
 
-  // Assert some of product name have the search world(Dress) is true
+  // Assert some of product name have the search word (Dress) is true
   expect(containsDress).toBe(true);
 
   //-------------------------------------------
@@ -59,7 +56,7 @@ test("Search Products", async ({ page, context }) => {
 
   //Clear the search input
   await page.locator(`#search_product`).clear();
-  
+
   //refresh the page
   await page.reload();
 
@@ -74,24 +71,5 @@ test("Search Products", async ({ page, context }) => {
   //------------------------------------
 
   // Assert Empty Products list Search Result
-  await expect(page.locator(".col-sm-4 p")).not.toBeVisible();
-
-  // Clear the search input
-  await page.locator(`#search_product`).clear();
-
-  // Refresh the page
-  await page.reload();
-
-  // Fill  the seach input in left top side of the page(next to the search icon) with invalid word
-  await page.locator(`#search_product`).fill(`XPXPXPXPXX`);
-
-  // Click search icon to do the search
-  await page.locator(`#submit_search`).click();
-
-  //--------------------------------
-  // Assert:
-  //--------------------------------
-
-  // There is empty in the Searched Products list
   await expect(page.locator(".col-sm-4 p")).not.toBeVisible();
 });

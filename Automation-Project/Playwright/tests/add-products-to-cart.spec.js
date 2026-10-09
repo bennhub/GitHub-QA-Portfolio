@@ -2,12 +2,12 @@
 // Arrange:
 //--------------------------------
 import { test, expect } from "@playwright/test";
+import { UI_BASE_URL } from "./helpers/config.js";
 test("Validate Adding Products to Cart", async ({ page, context }) => {
   await context.setDefaultNavigationTimeout(60000); // optional: set a longer navigation timeout
-  
-  await page.goto("https://automationexercise.com", { // go to url
+
+  await page.goto(UI_BASE_URL, { // go to url
     waitUntil: "domcontentloaded", // ensure the DOM is fully loaded
-    ignoreHTTPSErrors: true, // Ignore HTTPS errors (if needed)
   });
 
   // Verify that home page is visible successfully
