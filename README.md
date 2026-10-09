@@ -7,17 +7,20 @@ Welcome to my GitHub repository, designed to demonstrate my skills and experienc
 
 ## Table of Contents
 
-1. [QA Practices](#qa-practices)
+1. [AI-QA](#ai-qa)
 2. [Automation Coding Project](#automation-coding-project)
 3. [CI/CD Implementation](#cicd-implementation)
 4. [Docker](#docker)
-5. [AI-QA](#ai-qa)
+5. [QA Practices](#qa-practices)
 
-## QA Practices
+## AI-QA
 
-This section covers my approach to bug reporting, version control, and CI workflow.
+This section covers how I use AI as part of QA work, both general workflow practices
+(multi-agent graph workflows, AI-assisted automation framework support, MCP) and
+specific tools I've built, including a Gemini-powered test case generator.
 
-- [QA Practices](./QA-Practices/QA-Practices.md)
+ - [AI-QA Section](https://github.com/bennhub/GitHub-QA-Portfolio/tree/main/AI-QA) 
+ - [AI-QA README](./AI-QA/README.md)
 
 ## Automation Coding Project
 
@@ -40,14 +43,11 @@ This is a practical project where I utilize Docker to run the Playwright suite i
  - [Docker Project](https://github.com/bennhub/GitHub-QA-Portfolio/tree/main/Docker) 
  - [Docker README](./Docker/Playwright-Docker-Demo.md) 
 
-## AI-QA
+## QA Practices
 
-This section covers how I use AI as part of QA work, both general workflow practices
-(multi-agent graph workflows, AI-assisted automation framework support, MCP) and
-specific tools I've built, including a Gemini-powered test case generator.
+This section covers my approach to bug reporting, version control, and CI workflow.
 
- - [AI-QA Section](https://github.com/bennhub/GitHub-QA-Portfolio/tree/main/AI-QA) 
- - [AI-QA README](./AI-QA/README.md)
+- [QA Practices](./QA-Practices/QA-Practices.md)
 
 ---
 
