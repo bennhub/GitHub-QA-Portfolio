@@ -7,18 +7,11 @@ Welcome to my GitHub repository, designed to demonstrate my skills and experienc
 
 ## Table of Contents
 
-1. [Resume](#resume)
-2. [QA Practices](#qa-practices)
-3. [Automation Coding Project](#automation-coding-project)
-4. [CI/CD Implementation](#cicd-implementation)
-5. [Docker](#docker)
-6. [AI-QA](#ai-qa)
-
-## Resume
-
-You can find my resume in this repository, providing a detailed overview of my work history, skills, and experience.
-
-[View My Resume](./resume.md)
+1. [QA Practices](#qa-practices)
+2. [Automation Coding Project](#automation-coding-project)
+3. [CI/CD Implementation](#cicd-implementation)
+4. [Docker](#docker)
+5. [AI-QA](#ai-qa)
 
 ## QA Practices
 
