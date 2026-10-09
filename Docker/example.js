@@ -1,9 +1,9 @@
-const { chromium } = require('playwright');
+import { chromium } from "playwright";
 
 (async () => {
   const browser = await chromium.launch();
   const page = await browser.newPage();
-  await page.goto('https://www.b-n.me');
-  await page.screenshot({ path: 'example.png' });
+  await page.goto("https://www.b-n.me");
+  await page.screenshot({ path: "example.png" });
   await browser.close();
 })();

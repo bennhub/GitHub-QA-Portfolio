@@ -1,56 +1,45 @@
-//--------------------------------
-// Arrange:
-//--------------------------------
-import { test, expect } from "@playwright/test";
-import { UI_BASE_URL } from "./helpers/config.js";
-test("Validate Adding Products to Cart", async ({ page, context }) => {
-  await context.setDefaultNavigationTimeout(60000); // optional: set a longer navigation timeout
+import { test, expect } from "../fixtures/pages.fixture.js";
+import { PRODUCTS } from "../test-data/products.js";
 
-  await page.goto(UI_BASE_URL, { // go to url
-    waitUntil: "domcontentloaded", // ensure the DOM is fully loaded
-  });
-
-  // Verify that home page is visible successfully
+test("Validate Adding Products to Cart", async ({
+  page,
+  homePage,
+  productsPage,
+  cartPage,
+}) => {
+  //--------------------------------
+  // Arrange:
+  //--------------------------------
+  await homePage.goto();
   await expect(page).toHaveTitle(/Automation Exercise/);
+  await homePage.goToProducts();
 
   //--------------------------------
   // Act:
   //--------------------------------
-
-  // Click 'Products' button
-  await page.locator(`[href="/products"]`).click();
-
-  // Hover over first product and click 'Add to cart'
-  await page.hover('[data-product-id="1"].add-to-cart', { timeout: 3000 });
-  await page.click('[data-product-id="1"].add-to-cart');
-
-  // Click 'Continue Shopping' button
-  await page.locator(`:text("Continue Shopping")`).click();
-
-  // Hover over second product and click 'Add to cart'
-  await page.hover('[data-product-id="2"].add-to-cart', { timeout: 3000 });
-  await page.click('[data-product-id="2"].add-to-cart');
-
-  // Click 'View Cart' button
-  await page.locator(`:text("View Cart")`).click();
+  await productsPage.addProductToCart(PRODUCTS.blueTop.id, { hoverFirst: true });
+  await productsPage.continueShopping();
+  await productsPage.addProductToCart(PRODUCTS.menTshirt.id, { hoverFirst: true });
+  await productsPage.viewCart();
 
   //--------------------------------
   // Assert:
   //--------------------------------
+  await expect(cartPage.productRow(PRODUCTS.blueTop.id)).toBeVisible();
+  await expect(cartPage.productRow(PRODUCTS.menTshirt.id)).toBeVisible();
 
-  // Verify both products are added to Cart
-  await expect(page.locator(`#product-1`)).toBeVisible();
-  await expect(page.locator(`#product-2`)).toBeVisible();
-  
-  // Verify their prices, quantity and total price
-  await expect(page.locator(`#product-1 .cart_price`)).toHaveText(`Rs. 500`);
-  await expect(page.locator(`#product-1 .cart_quantity`)).toHaveText(`1`);
-  await expect(page.locator(`#product-1 .cart_total_price`)).toHaveText(
-    `Rs. 500`
+  await expect(cartPage.productPrice(PRODUCTS.blueTop.id)).toHaveText(
+    PRODUCTS.blueTop.price,
   );
-  await expect(page.locator(`#product-2 .cart_price`)).toHaveText(`Rs. 400`);
-  await expect(page.locator(`#product-2 .cart_quantity`)).toHaveText(`1`);
-  await expect(page.locator(`#product-2 .cart_total_price`)).toHaveText(
-    `Rs. 400`
+  await expect(cartPage.productQuantity(PRODUCTS.blueTop.id)).toHaveText("1");
+  await expect(cartPage.productTotalPrice(PRODUCTS.blueTop.id)).toHaveText(
+    PRODUCTS.blueTop.price,
+  );
+  await expect(cartPage.productPrice(PRODUCTS.menTshirt.id)).toHaveText(
+    PRODUCTS.menTshirt.price,
+  );
+  await expect(cartPage.productQuantity(PRODUCTS.menTshirt.id)).toHaveText("1");
+  await expect(cartPage.productTotalPrice(PRODUCTS.menTshirt.id)).toHaveText(
+    PRODUCTS.menTshirt.price,
   );
 });

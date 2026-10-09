@@ -25,6 +25,18 @@ already in this repo.
    (and saying so in the PR). If the assertion is correct and the product violated it,
    that's a real bug report, not a test fix.
 
+## Known External Gotcha
+
+automationexercise.com (the app under test) sits behind bot-protection that can
+return a "One moment, please..." interstitial to any client, including plain
+`curl`, not just headless browsers. If `expect(page).toHaveTitle` reports that
+string instead of `/Automation Exercise/`, that's the site blocking the runner's
+network path, not a regression. Confirm with a plain `curl` before touching any
+test code. See
+[Automation-Project/Playwright/agent/automation-agent.md](../../../Automation-Project/Playwright/agent/automation-agent.md)
+for the full note; this was found for real while building this suite, not
+hypothesized.
+
 ## Output
 
 A debugging pass should end with one of: **flaky, stabilize it** (name the fix),

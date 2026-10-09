@@ -21,7 +21,7 @@ This section covers my approach to bug reporting, version control, and CI workfl
 
 ## Automation Coding Project
 
-This is a practical project where I apply automation to solve real-world problems: a Playwright test suite covering both UI and API testing. You can review the code, run the tests, and see the results.
+This is a practical project where I apply automation to solve real-world problems: a Playwright framework (Page Object Model, fixtures, test data factories, env-driven config, linting) covering both UI and API testing. You can review the code, run the tests, and see the results.
 
  - [Automation Project](https://github.com/bennhub/GitHub-QA-Portfolio/tree/main/Automation-Project) 
  - [Automation Project README](./Automation-Project/Automation-Demo.md)

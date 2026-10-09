@@ -6,8 +6,12 @@ ticket, a bug report, a failing test, a PR to review) and decides which
 specialist agents need to weigh in and in what order, by keyword-matching
 over the task text (see plan_for_task in mock_llm.py - this is simple
 keyword matching, not reasoning). Each specialist is grounded in a real
-reference file (see ../context/), does its part, and the Orchestrator
-synthesizes all of it into one cohesive deliverable.
+reference file, does its part, and the Orchestrator synthesizes all of it
+into one cohesive deliverable. Most of those reference files live under
+../context/, but the Automation Engineer Agent is grounded directly in the
+real automation repo's own self-description
+(../../../Automation-Project/Playwright/agent/automation-agent.md), not a
+hand-copied summary of it.
 
 This is a genuine LangGraph StateGraph: real nodes, real conditional
 routing, real state passing between agents. The one thing that's mocked is
@@ -36,10 +40,17 @@ from mock_llm import (  # noqa: E402
 )
 
 CONTEXT_DIR = Path(__file__).parent.parent / "context"
+# graph/ -> Multi-Agent-Workflows/ -> AI-QA/ -> repo root
+REPO_ROOT = Path(__file__).resolve().parents[3]
 
 
-def load_context(filename: str) -> str:
-    return (CONTEXT_DIR / filename).read_text()
+def load_context(path: str) -> str:
+    """Loads a reference file either by bare filename (resolved against
+    ../context/) or by a path relative to the repo root (for a specialist
+    grounded directly in a real file elsewhere in the repo, not a copy)."""
+    if "/" in path:
+        return (REPO_ROOT / path).read_text()
+    return (CONTEXT_DIR / path).read_text()
 
 
 # ---------------------------------------------------------------------------
@@ -119,7 +130,7 @@ SPECIALIST_CONFIG = {
     "ui_flow_agent": (UI_FLOW_AGENT_ROLE, "ui_flows_reference.md"),
     "automation_engineer_agent": (
         AUTOMATION_ENGINEER_AGENT_ROLE,
-        "automation_standards.md",
+        "Automation-Project/Playwright/agent/automation-agent.md",
     ),
     "dev_integration_agent": (DEV_INTEGRATION_AGENT_ROLE, "dev_repo_reference.md"),
     "debugging_agent": (DEBUGGING_AGENT_ROLE, "debugging_reference.md"),

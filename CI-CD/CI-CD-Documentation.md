@@ -9,6 +9,12 @@ configured as follows:
     - Code is pushed to the `main` branch.
     - A pull request (PR) is created for the `main` branch.
 
+- **Environment Variables:**
+  - `BASE_URL` and `API_BASE_URL` are set at the workflow level, matching the
+    defaults in `Automation-Project/Playwright/config/env.js`. Overriding either
+    (e.g. to point at a staging environment) means changing these two lines, not
+    the code.
+
 - **Job Execution:**
   - The workflow is named `Playwright Tests` and runs on the `ubuntu-latest` environment.
   - The pipeline performs the following steps:
@@ -17,11 +23,14 @@ configured as follows:
        dependency caching enabled.
     3. **Install dependencies** with `npm ci` in the `Automation-Project/Playwright`
        directory (uses the committed lockfile for reproducible installs).
-    4. **Install Playwright browsers** with `npx playwright install --with-deps
+    4. **Lint** the suite with `npm run lint` (ESLint, including
+       `eslint-plugin-playwright`'s rules), failing the build on a lint error before
+       any browser time is spent.
+    5. **Install Playwright browsers** with `npx playwright install --with-deps
        chromium` (only Chromium is installed, matching the single active browser
        project in `playwright.config.js`).
-    5. **Run Playwright tests** using `npx playwright test`.
-    6. **Upload the HTML report** as a build artifact (retained 14 days) whenever the
+    6. **Run Playwright tests** using `npx playwright test`.
+    7. **Upload the HTML report** as a build artifact (retained 14 days) whenever the
        job runs, pass or fail, so a failing run's report can be inspected without
        re-running locally.
 
@@ -36,6 +45,10 @@ configured as follows:
     pull_request:
       branches:
         - main
+
+  env:
+    BASE_URL: https://automationexercise.com
+    API_BASE_URL: https://restful-booker.herokuapp.com/booking
 
   jobs:
     test:
@@ -54,6 +67,10 @@ configured as follows:
 
       - name: Install dependencies
         run: npm ci
+        working-directory: Automation-Project/Playwright
+
+      - name: Lint
+        run: npm run lint
         working-directory: Automation-Project/Playwright
 
       - name: Install Playwright browsers

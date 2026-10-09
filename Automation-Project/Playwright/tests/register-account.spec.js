@@ -1,28 +1,21 @@
-import { test, expect } from "@playwright/test";
-import { registerNewAccount } from "./helpers/registration.js";
+import { test, expect } from "../fixtures/pages.fixture.js";
 
-test("Register account and delete it", async ({ page, context }) => {
-  //--------------------------------
-  // Act: Register a new account
-  //--------------------------------
-  await registerNewAccount(page, context);
-
+test("Register account and delete it", async ({
+  // Requested to trigger the registration setup; its value isn't needed
+  // here, so it's aliased to satisfy the no-unused-vars lint rule.
+  registeredUser: _registeredUser,
+  accountStatusPage,
+}) => {
   //--------------------------------
   // Assert: Account was created
   //--------------------------------
-  await expect(page.locator(`text=Account Created!`)).toBeVisible();
+  await expect(accountStatusPage.accountCreatedText).toBeVisible();
 
   //--------------------------------
   // Act + Assert: Clean up - delete the account
   //--------------------------------
-
-  // Click 'Continue' button to goto the logged in page
-  await page.locator(`[data-qa="continue-button"]`).click();
-
-  // Click 'Delete Account' button to delete account
-  await page.locator(`:text("Delete Account")`).click();
-
-  // Verify that 'ACCOUNT DELETED!' is visible and click 'Continue' button
-  await expect(page.locator(`[data-qa="account-deleted"]`)).toBeVisible();
-  await page.locator(`[data-qa="continue-button"]`).click();
+  await accountStatusPage.continue();
+  await accountStatusPage.deleteAccount();
+  await expect(accountStatusPage.accountDeletedDataQa).toBeVisible();
+  await accountStatusPage.continue();
 });
