@@ -1,70 +1,55 @@
 
 # Ben's GitHub QA Portfolio
 
+![CI](https://github.com/bennhub/GitHub-QA-Portfolio/actions/workflows/ci.yml/badge.svg)
+
 Welcome to my GitHub repository, designed to demonstrate my skills and experience as a Quality Assurance (QA) Engineer. This repository contains a comprehensive collection of my work, showcasing my approach to QA, version control, CI/CD, automation, and more.
 
 ## Table of Contents
 
 1. [Resume](#resume)
-2. [Bug Reporting](#bug-reporting)
-3. [AI-QA](#AI-QA)
+2. [QA Practices](#qa-practices)
+3. [Automation Coding Project](#automation-coding-project)
 4. [CI/CD Implementation](#cicd-implementation)
-5. [Automation Coding Project](#automation-coding-project)
-6. [Docker](#docker)
-7. [Version Control](#version-control)
+5. [Docker](#docker)
+6. [AI Dojo](#ai-dojo)
 
 ## Resume
 
 You can find my resume in this repository, providing a detailed overview of my work history, skills, and experience.
 
-[View My Resume](./resume.md)  <!-- Or link to a PDF: ./Resume.pdf -->
+[View My Resume](./resume.md)
 
-## Bug Reporting 
+## QA Practices
 
-In this section, I demonstrate my approach to bug reporting using GitHub’s issue tracking feature. You will find a detailed bug report template as well as examples of filled-out reports.
+This section covers my approach to bug reporting, version control, and CI workflow.
 
-- [GitHub Issues Example](https://github.com/bennhub/GitHub-QA-Portfolio/issues/1).
-- [Sample Bug Report](./Bug-Reporting/Sample-Bug-Report.md)
-- [Bug Report Template](./Bug-Reporting/Template.md)
-  
-
-## Version Control
-
-This section showcases my use of GitHub for version control, including the creation and management of branches, pull requests, and merges. You can explore the following:
-
-- Branches and pull requests demonstrating a typical GitHub workflow.
-- Documentation on how I approach version control.
-
-[View Version Control Details](./Version-Control/VC-Documentation.md)
-
-## CI/CD Implementation
-
-Here, I detail how I set up continuous integration and continuous deployment (CI/CD) pipelines using GitHub Actions. This section includes:
-
-- [GitHub Actions workflow](https://github.com/bennhub/GitHub-QA-Portfolio/actions) 
-- [Documentation on my CI/CD setup](./CI-CD/CI-CD-Documentation.md)
+- [QA Practices](./QA-Practices/QA-Practices.md)
 
 ## Automation Coding Project
 
-This is a practical project where I apply automation to solve real-world problems. You can review the code, run the tests, and see the results.
+This is a practical project where I apply automation to solve real-world problems — a Playwright test suite covering both UI and API testing. You can review the code, run the tests, and see the results.
 
  - [Automation Project](https://github.com/bennhub/GitHub-QA-Portfolio/tree/main/Automation-Project) 
  - [Automation Project README](./Automation-Project/Automation-Demo.md)
 
+## CI/CD Implementation
+
+Here, I detail how I set up continuous integration (CI) pipelines using GitHub Actions to run the Playwright suite automatically. This section includes:
+
+- [GitHub Actions workflow](https://github.com/bennhub/GitHub-QA-Portfolio/actions) 
+- [Documentation on my CI/CD setup](./CI-CD/CI-CD-Documentation.md)
+
 ## Docker
 
-This is a practical project where I utilize Docker to run Playwright scripts in a containerized environment. Docker ensures that the scripts run consistently across different environments, which is especially useful for automated browser testing.
+This is a practical project where I utilize Docker to run the Playwright suite in a containerized environment. Docker ensures that the tests run consistently across different environments, which is especially useful for automated browser testing.
 
  - [Docker Project](https://github.com/bennhub/GitHub-QA-Portfolio/tree/main/Docker) 
  - [Docker README](./Docker/Playwright-Docker-Demo.md) 
 
-## AI-QA 
-**in progress..**
-Check out my latest project using Google Gemini AI to assist in creating test cases. This showcases how I integrate advanced AI tools into the QA process.
+## AI Dojo
 
- - [AI-QA Project](https://github.com/bennhub/GitHub-QA-Portfolio/tree/main/AI-QA%20Projects)
- - [AI-QA README](https://github.com/bennhub/GitHub-QA-Portfolio/blob/main/AI-QA%20Projects/README.md) 
-
+A new project demonstrating a graph-style AI agent workflow for QA (mirroring how I use AI agents day-to-day) is in development. Link coming soon.
 
 ---
 

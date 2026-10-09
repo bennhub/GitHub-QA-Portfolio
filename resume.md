@@ -62,7 +62,6 @@ Accomplished QA professional with 10+ years of experience. Proven track record i
 
 ## Projects
 
-- **[AI QA Test Buddy](https://github.com/bennhub/ai-qa-test-buddy)**: A tool leveraging Gemini AI Model to assist in creating test cases.
 - **[Machine Learning Clustering and Recommendation System](https://github.com/bennhub/Machine-Learning-Projects)**
 
 ## Education
