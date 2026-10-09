@@ -114,12 +114,14 @@ _SPECIALIST_RESPONSES = {
         "flow. Engineering breakdown should separate new API surface from UI changes."
     ),
     "automation_engineer_agent": (
-        "Per automation_standards.md: add a new spec under tests/, named for the "
-        "behavior (kebab-case, no typos). Reuse tests/helpers/ for any setup shared "
-        "with existing specs (e.g. registerNewAccount). Assert with "
-        "expect(...).toBeVisible()/toHaveText() at each step - no waitForTimeout. "
-        "Prefer data-qa/data-testid selectors per ui_flows_reference.md. Keep the "
-        "global timeout at Playwright's 30s default."
+        "Per agent/automation-agent.md: add a new spec under tests/, named for the "
+        "behavior (kebab-case, no typos). Add or reuse a page object in pages/ "
+        "(getter-based locators, no assertions inside the page object) and wire it "
+        "into fixtures/pages.fixture.js. Pull any needed values from test-data/ "
+        "rather than hardcoding them. Assert with "
+        "expect(...).toBeVisible()/toHaveText() at each step, no waitForTimeout. "
+        "Run npm run lint before calling it done; the suite's ESLint config fails "
+        "on exactly that anti-pattern."
     ),
     "dev_integration_agent": (
         "Per dev_repo_reference.md: if this touches the API, assert on individual "

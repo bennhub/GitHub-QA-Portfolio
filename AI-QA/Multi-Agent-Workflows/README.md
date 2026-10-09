@@ -16,15 +16,19 @@ shape.
 | **Orchestrator** | Plans which specialists a task needs, in what order, and synthesizes their outputs at the end | n/a |
 | **Requirements Agent** | Design docs, Jira ticket stories, engineering tech breakdown docs | [context/requirements_reference.md](./context/requirements_reference.md) |
 | **UI Flow Agent** | Documented UI flows and page structure of the app under test | [context/ui_flows_reference.md](./context/ui_flows_reference.md) |
-| **Automation Engineer Agent** | Current automation repo's code structure, codebase, and strict test-implementation guidelines | [context/automation_standards.md](./context/automation_standards.md) |
+| **Automation Engineer Agent** | Current automation repo's code structure, codebase, and strict test-implementation guidelines | [Automation-Project/Playwright/agent/automation-agent.md](../../Automation-Project/Playwright/agent/automation-agent.md) |
 | **Dev Integration Agent** | Dev repo's unit tests, API control-flow structure, codebase, and CI/CD pipelines | [context/dev_repo_reference.md](./context/dev_repo_reference.md) |
 | **Debugging Agent** | Triaging a failing test: flaky, a real regression, or a test that's simply wrong | [context/debugging_reference.md](./context/debugging_reference.md) |
 | **PR Review Agent** | Reviewing an automation test PR against this repo's standards before it merges | [context/pr_review_reference.md](./context/pr_review_reference.md) |
 
-The reference files aren't hypothetical. They're grounded in the real
+The reference files aren't hypothetical. Most are grounded in the real
 [Automation-Project](../../Automation-Project/) suite and
-[CI workflow](../../.github/workflows/ci.yml) already in this repo, so the agents'
-"knowledge" matches what's actually true here.
+[CI workflow](../../.github/workflows/ci.yml) already in this repo. The Automation
+Engineer Agent goes one step further: its reference file isn't a copy at all, it's
+loaded directly from the automation repo's own self-description,
+[agent/automation-agent.md](../../Automation-Project/Playwright/agent/automation-agent.md).
+If that file changes, the agent's grounding changes with it automatically, no
+duplicate to keep in sync.
 
 ## How Routing Actually Works
 
@@ -55,10 +59,12 @@ Based on ui_flows_reference.md, the closest matching documented flow is Add to C
 where possible.
 
 [automation_engineer_agent] Automation Engineer Agent (mock response):
-Per automation_standards.md: add a new spec under tests/, named for the behavior
-(kebab-case, no typos). Reuse tests/helpers/ for any setup shared with existing
-specs. Assert with expect(...).toBeVisible()/toHaveText() at each step - no
-waitForTimeout. ...
+Per agent/automation-agent.md: add a new spec under tests/, named for the behavior
+(kebab-case, no typos). Add or reuse a page object in pages/ (getter-based
+locators, no assertions inside the page object) and wire it into
+fixtures/pages.fixture.js. Pull any needed values from test-data/ rather than
+hardcoding them. Assert with expect(...).toBeVisible()/toHaveText() at each step,
+no waitForTimeout. ...
 ```
 
 Note `dev_integration_agent`, `debugging_agent`, and `pr_review_agent` were correctly
@@ -102,8 +108,9 @@ This is built to be adapted, not just read. To get it working with your own AI
 workflows:
 
 1. **Clone this folder** (`AI-QA/Multi-Agent-Workflows/`) into your own project.
-2. **Update the reference files** in `context/` to point at your workflows instead of
-   this portfolio's: your UI flows, your requirements/ticket format, your automation
+2. **Update the reference files** (most in `context/`, the Automation Engineer
+   Agent's in your own automation repo) to point at your workflows instead of this
+   portfolio's: your UI flows, your requirements/ticket format, your automation
    standards, your dev/CI setup, your debugging approach, your PR checklist. The
    agents are only as useful as what they're grounded in.
 3. **Run the multi-agent flow in your model of choice**: Codex, Claude Desktop, a
